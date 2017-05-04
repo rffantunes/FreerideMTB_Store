@@ -1,21 +1,21 @@
-﻿@model FreerideMTB_Store.Models.IndexViewModel
+﻿@model Freeride_MTB_Store.Models.IndexViewModel
 @{
-    ViewBag.Title = "Gerenciar";
+    ViewBag.Title = "Editar";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
-    <h4>Alterar configurações de sua conta</h4>
+    <h4>Alterar configurações da sua conta</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>Senha:</dt>
+        <dt>Password:</dt>
         <dd>
             [
             @if (Model.HasPassword)
             {
-                @Html.ActionLink("Alterar sua senha", "ChangePassword")
+                @Html.ActionLink("Alterar sua Password", "ChangePassword")
             }
             else
             {
@@ -26,7 +26,7 @@
         <dt>Logins externos:</dt>
         <dd>
             @Model.Logins.Count [
-            @Html.ActionLink("Gerenciar", "ManageLogins") ]
+            @Html.ActionLink("Editar", "ManageLogins") ]
         </dd>
         @*
             Phone Numbers can used as a second factor of verification in a two-factor authentication system.
@@ -59,8 +59,7 @@
         <dt>Autenticação de dois fatores:</dt>
         <dd>
             <p>
-                There are no two-factor authentication providers configured. See <a href="https://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                for details on setting up this ASP.NET application to support two-factor authentication.
+                There are no two-factor authentication providers configured.
             </p>
             @*@if (Model.TwoFactor)
                 {

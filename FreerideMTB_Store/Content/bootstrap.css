@@ -342,7 +342,6 @@ a {
 a:hover,
 a:focus {
   color: #2a6496;
-  text-decoration: underline;
 }
 
 a:focus {
@@ -4058,28 +4057,33 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .navbar-header:before,
 .navbar-header:after {
-  display: table;
-  content: " ";
+    text-decoration: none;
+    display: table;
+    content: " ";
 }
 
 .navbar-header:after {
-  clear: both;
+    text-decoration: none;
+    clear: both;
 }
 
 .navbar-header:before,
 .navbar-header:after {
-  display: table;
-  content: " ";
+    text-decoration: none;
+    display: table;
+    content: " ";
 }
 
 .navbar-header:after {
-  clear: both;
+    text-decoration: none;
+    clear: both;
 }
 
 @media (min-width: 768px) {
-  .navbar-header {
-    float: left;
-  }
+    .navbar-header {
+        text-decoration: none;
+        float: left;
+    }
 }
 
 .navbar-collapse {
@@ -4521,6 +4525,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .navbar-inverse .navbar-nav > li > a {
   color: #999999;
+  font-size:20px;
 }
 
 .navbar-inverse .navbar-nav > li > a:hover,
@@ -6181,6 +6186,22 @@ body.modal-open,
 
 .carousel-caption .btn {
   text-shadow: none;
+}
+
+.logoclass {
+    font-size:25px;
+    text-decoration: none;
+    color: #999999;
+}
+
+.logoclass:hover {
+        color: #ffffff;
+    }
+
+#logo {
+    width: 53px;
+    height: 53px;
+    text-decoration: none;
 }
 
 @media screen and (min-width: 768px) {

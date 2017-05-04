@@ -52,6 +52,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -191,28 +193,54 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\tbl_CategoriaController.cs" />
+    <Compile Include="Controllers\tbl_EncomendaController.cs" />
+    <Compile Include="Controllers\tbl_ProdutosController.cs" />
+    <Compile Include="Controllers\tbl_Sub_CategoriaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AspNetRoles.cs" />
+    <Compile Include="Models\AspNetUserClaims.cs" />
+    <Compile Include="Models\AspNetUserLogins.cs" />
+    <Compile Include="Models\AspNetUsers.cs" />
+    <Compile Include="Models\C__MigrationHistory.cs" />
+    <Compile Include="Models\DBModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\tbl_Categoria.cs" />
+    <Compile Include="Models\tbl_Encomenda.cs" />
+    <Compile Include="Models\tbl_Produtos.cs" />
+    <Compile Include="Models\tbl_Sub_Categoria.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Imagens\icon_btt.png" />
+    <Content Include="Imagens\TrekLogo.png" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -257,18 +285,29 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\tbl_Categoria\Create.cshtml" />
+    <Content Include="Views\tbl_Categoria\Delete.cshtml" />
+    <Content Include="Views\tbl_Categoria\Details.cshtml" />
+    <Content Include="Views\tbl_Categoria\Edit.cshtml" />
+    <Content Include="Views\tbl_Categoria\Index.cshtml" />
+    <Content Include="Views\tbl_Sub_Categoria\Create.cshtml" />
+    <Content Include="Views\tbl_Sub_Categoria\Delete.cshtml" />
+    <Content Include="Views\tbl_Sub_Categoria\Details.cshtml" />
+    <Content Include="Views\tbl_Sub_Categoria\Edit.cshtml" />
+    <Content Include="Views\tbl_Sub_Categoria\Index.cshtml" />
+    <Content Include="Views\tbl_Produtos\Create.cshtml" />
+    <Content Include="Views\tbl_Produtos\Delete.cshtml" />
+    <Content Include="Views\tbl_Produtos\Details.cshtml" />
+    <Content Include="Views\tbl_Produtos\Edit.cshtml" />
+    <Content Include="Views\tbl_Produtos\Index.cshtml" />
+    <Content Include="Views\tbl_Encomenda\Create.cshtml" />
+    <Content Include="Views\tbl_Encomenda\Delete.cshtml" />
+    <Content Include="Views\tbl_Encomenda\Details.cshtml" />
+    <Content Include="Views\tbl_Encomenda\Edit.cshtml" />
+    <Content Include="Views\tbl_Encomenda\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
