@@ -15,7 +15,7 @@ namespace FreerideMTB_Store.Models
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id_sub_cat { get; set; }
 
         [Required]

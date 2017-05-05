@@ -29,5 +29,10 @@ namespace FreerideMTB_Store.Models
         {
             return new ApplicationDbContext();
         }
+
+
+
+
+
     }
 }

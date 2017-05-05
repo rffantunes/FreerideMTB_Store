@@ -15,14 +15,16 @@ namespace FreerideMTB_Store.Models
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id_produto { get; set; }
 
-        [Required]
+        
+        [Required(ErrorMessage = "o {0} é de preenchimento obrigatório")]
         public string Nome { get; set; }
 
         public string Descricao { get; set; }
 
+        
         [Column(TypeName = "money")]
         public decimal? Preco { get; set; }
 
@@ -32,7 +34,7 @@ namespace FreerideMTB_Store.Models
 
         public int? Sub_Categoria { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "o {0} é de preenchimento obrigatório, Coloque a quantidade existente.")]
         [StringLength(10)]
         public string Stock { get; set; }
 
