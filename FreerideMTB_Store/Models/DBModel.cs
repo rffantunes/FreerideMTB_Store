@@ -21,6 +21,8 @@ namespace FreerideMTB_Store.Models
         public virtual DbSet<tbl_Encomenda> tbl_Encomenda { get; set; }
         public virtual DbSet<tbl_Produtos> tbl_Produtos { get; set; }
         public virtual DbSet<tbl_Sub_Categoria> tbl_Sub_Categoria { get; set; }
+        public virtual DbSet<tbl_Intermedia_Encomenda> tbl_Intermedia_Encomenda { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -93,6 +95,17 @@ namespace FreerideMTB_Store.Models
                 .HasMany(e => e.tbl_Produtos)
                 .WithOptional(e => e.tbl_Sub_Categoria)
                 .HasForeignKey(e => e.Sub_Categoria);
+
+
+            modelBuilder.Entity<tbl_Intermedia_Encomenda>()
+                .Property(e => e.ID)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<tbl_Intermedia_Encomenda>()
+                .HasMany(e => e.tbl_Produtos)
+                .WithOptional(e => e.tbl_Sub_Categoria)
+                .HasForeignKey(e => e.Sub_Categoria);
+
         }
     }
 }
