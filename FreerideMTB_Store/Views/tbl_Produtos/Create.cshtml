@@ -1,10 +1,10 @@
 ﻿@model FreerideMTB_Store.Models.tbl_Produtos
 
 @{
-    ViewBag.Title = "Novo Produto";
+    ViewBag.Title = "Create";
 }
 
-<h2>Novo Produto</h2>
+<h2>Create</h2>
 
 
 @using (Html.BeginForm()) 
@@ -12,18 +12,9 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-       
+        <h4>tbl_Produtos</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-       <!-- <div class="form-group">
-            @Html.LabelFor(model => model.Id_produto, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Id_produto, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Id_produto, "", new { @class = "text-danger" })
-            </div>
-        </div>
-           -->
-
         <div class="form-group">
             @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">

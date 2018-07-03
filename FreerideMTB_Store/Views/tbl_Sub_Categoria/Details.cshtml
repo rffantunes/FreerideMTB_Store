@@ -1,7 +1,7 @@
 ﻿@model FreerideMTB_Store.Models.tbl_Sub_Categoria
 
 @{
-    ViewBag.Title = "Detalhes";
+    ViewBag.Title = "Details";
 }
 
 <h2>Details</h2>
@@ -11,19 +11,19 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.tbl_Categoria.Nome)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tbl_Categoria.Nome)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.Nome)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_Categoria.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_Categoria.Nome)
         </dd>
 
     </dl>

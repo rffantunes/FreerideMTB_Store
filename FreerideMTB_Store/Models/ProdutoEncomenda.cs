@@ -8,6 +8,4 @@ namespace FreerideMTB_Store.Models
     public class ProdutoEncomenda
     {
     }
-
-[]
 }

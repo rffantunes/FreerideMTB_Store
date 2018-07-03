@@ -12,12 +12,12 @@ namespace FreerideMTB_Store.Controllers
 {
     public class tbl_EncomendaController : Controller
     {
-        private DBModel db = new DBModel();
+        private FreerideEntities db = new FreerideEntities();
 
         // GET: tbl_Encomenda
         public ActionResult Index()
         {
-            var tbl_Encomenda = db.tbl_Encomenda.Include(t => t.AspNetUsers).Include(t => t.tbl_Produtos);
+            var tbl_Encomenda = db.tbl_Encomenda.Include(t => t.AspNetUsers);
             return View(tbl_Encomenda.ToList());
         }
 
@@ -39,8 +39,7 @@ namespace FreerideMTB_Store.Controllers
         // GET: tbl_Encomenda/Create
         public ActionResult Create()
         {
-            ViewBag.id_User = new SelectList(db.AspNetUsers, "Id", "Email");
-            ViewBag.id_Produto = new SelectList(db.tbl_Produtos, "Id_produto", "Nome");
+            ViewBag.UserName = new SelectList(db.AspNetUsers, "Id", "Email");
             return View();
         }
 
@@ -49,7 +48,7 @@ namespace FreerideMTB_Store.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id_Encomenda,id_Produto,id_User,Quantidade,Data")] tbl_Encomenda tbl_Encomenda)
+        public ActionResult Create([Bind(Include = "Id_Encomenda,Quantidade,Data,UserName")] tbl_Encomenda tbl_Encomenda)
         {
             if (ModelState.IsValid)
             {
@@ -58,8 +57,7 @@ namespace FreerideMTB_Store.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.id_User = new SelectList(db.AspNetUsers, "Id", "Email", tbl_Encomenda.id_User);
-            ViewBag.id_Produto = new SelectList(db.tbl_Produtos, "Id_produto", "Nome", tbl_Encomenda.id_Produto);
+            ViewBag.UserName = new SelectList(db.AspNetUsers, "Id", "Email", tbl_Encomenda.UserName);
             return View(tbl_Encomenda);
         }
 
@@ -75,8 +73,7 @@ namespace FreerideMTB_Store.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.id_User = new SelectList(db.AspNetUsers, "Id", "Email", tbl_Encomenda.id_User);
-            ViewBag.id_Produto = new SelectList(db.tbl_Produtos, "Id_produto", "Nome", tbl_Encomenda.id_Produto);
+            ViewBag.UserName = new SelectList(db.AspNetUsers, "Id", "Email", tbl_Encomenda.UserName);
             return View(tbl_Encomenda);
         }
 
@@ -85,7 +82,7 @@ namespace FreerideMTB_Store.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id_Encomenda,id_Produto,id_User,Quantidade,Data")] tbl_Encomenda tbl_Encomenda)
+        public ActionResult Edit([Bind(Include = "Id_Encomenda,Quantidade,Data,UserName")] tbl_Encomenda tbl_Encomenda)
         {
             if (ModelState.IsValid)
             {
@@ -93,8 +90,7 @@ namespace FreerideMTB_Store.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.id_User = new SelectList(db.AspNetUsers, "Id", "Email", tbl_Encomenda.id_User);
-            ViewBag.id_Produto = new SelectList(db.tbl_Produtos, "Id_produto", "Nome", tbl_Encomenda.id_Produto);
+            ViewBag.UserName = new SelectList(db.AspNetUsers, "Id", "Email", tbl_Encomenda.UserName);
             return View(tbl_Encomenda);
         }
 
