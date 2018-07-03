@@ -196,6 +196,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\tbl_CategoriaController.cs" />
     <Compile Include="Controllers\tbl_EncomendaController.cs" />
+    <Compile Include="Controllers\tbl_ProdutoEncomendaController.cs" />
     <Compile Include="Controllers\tbl_ProdutosController.cs" />
     <Compile Include="Controllers\tbl_Sub_CategoriaController.cs" />
     <Compile Include="Global.asax.cs">
@@ -204,53 +205,52 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AspNetRoles.cs">
-      <DependentUpon>FreeRideDb.tt</DependentUpon>
+      <DependentUpon>FreerideDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetUserClaims.cs">
-      <DependentUpon>FreeRideDb.tt</DependentUpon>
+      <DependentUpon>FreerideDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetUserLogins.cs">
-      <DependentUpon>FreeRideDb.tt</DependentUpon>
+      <DependentUpon>FreerideDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetUsers.cs">
-      <DependentUpon>FreeRideDb.tt</DependentUpon>
+      <DependentUpon>FreerideDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C__MigrationHistory.cs">
-      <DependentUpon>FreeRideDb.tt</DependentUpon>
+      <DependentUpon>FreerideDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DBModel.cs" />
-    <Compile Include="Models\FreeRideDb.Context.cs">
+    <Compile Include="Models\FreerideDBModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>FreeRideDb.Context.tt</DependentUpon>
+      <DependentUpon>FreerideDBModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\FreeRideDb.cs">
+    <Compile Include="Models\FreerideDBModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>FreeRideDb.tt</DependentUpon>
+      <DependentUpon>FreerideDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\FreeRideDb.Designer.cs">
+    <Compile Include="Models\FreerideDBModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>FreeRideDb.edmx</DependentUpon>
+      <DependentUpon>FreerideDBModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProdutoEncomenda.cs" />
     <Compile Include="Models\tbl_Categoria.cs">
-      <DependentUpon>FreeRideDb.tt</DependentUpon>
+      <DependentUpon>FreerideDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbl_Encomenda.cs">
-      <DependentUpon>FreeRideDb.tt</DependentUpon>
+      <DependentUpon>FreerideDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbl_ProdutoEncomenda.cs">
-      <DependentUpon>FreeRideDb.tt</DependentUpon>
+      <DependentUpon>FreerideDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbl_Produtos.cs">
-      <DependentUpon>FreeRideDb.tt</DependentUpon>
+      <DependentUpon>FreerideDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbl_Sub_Categoria.cs">
-      <DependentUpon>FreeRideDb.tt</DependentUpon>
+      <DependentUpon>FreerideDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -279,25 +279,25 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <EntityDeploy Include="Models\FreeRideDb.edmx">
+    <EntityDeploy Include="Models\FreerideDBModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>FreeRideDb.Designer.cs</LastGenOutput>
+      <LastGenOutput>FreerideDBModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\FreeRideDb.edmx.diagram">
-      <DependentUpon>FreeRideDb.edmx</DependentUpon>
+    <Content Include="Models\FreerideDBModel.edmx.diagram">
+      <DependentUpon>FreerideDBModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Imagens\icon_btt.png" />
     <Content Include="Imagens\TrekLogo.png" />
-    <Content Include="Models\FreeRideDb.Context.tt">
+    <Content Include="Models\FreerideDBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FreeRideDb.edmx</DependentUpon>
-      <LastGenOutput>FreeRideDb.Context.cs</LastGenOutput>
+      <DependentUpon>FreerideDBModel.edmx</DependentUpon>
+      <LastGenOutput>FreerideDBModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\FreeRideDb.tt">
+    <Content Include="Models\FreerideDBModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FreeRideDb.edmx</DependentUpon>
-      <LastGenOutput>FreeRideDb.cs</LastGenOutput>
+      <DependentUpon>FreerideDBModel.edmx</DependentUpon>
+      <LastGenOutput>FreerideDBModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -311,7 +311,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -350,21 +352,26 @@
     <Content Include="Views\tbl_Categoria\Details.cshtml" />
     <Content Include="Views\tbl_Categoria\Edit.cshtml" />
     <Content Include="Views\tbl_Categoria\Index.cshtml" />
-    <Content Include="Views\tbl_Sub_Categoria\Create.cshtml" />
-    <Content Include="Views\tbl_Sub_Categoria\Delete.cshtml" />
-    <Content Include="Views\tbl_Sub_Categoria\Details.cshtml" />
-    <Content Include="Views\tbl_Sub_Categoria\Edit.cshtml" />
-    <Content Include="Views\tbl_Sub_Categoria\Index.cshtml" />
-    <Content Include="Views\tbl_Produtos\Create.cshtml" />
-    <Content Include="Views\tbl_Produtos\Delete.cshtml" />
-    <Content Include="Views\tbl_Produtos\Details.cshtml" />
-    <Content Include="Views\tbl_Produtos\Edit.cshtml" />
-    <Content Include="Views\tbl_Produtos\Index.cshtml" />
     <Content Include="Views\tbl_Encomenda\Create.cshtml" />
     <Content Include="Views\tbl_Encomenda\Delete.cshtml" />
     <Content Include="Views\tbl_Encomenda\Details.cshtml" />
     <Content Include="Views\tbl_Encomenda\Edit.cshtml" />
     <Content Include="Views\tbl_Encomenda\Index.cshtml" />
+    <Content Include="Views\tbl_ProdutoEncomenda\Create.cshtml" />
+    <Content Include="Views\tbl_ProdutoEncomenda\Delete.cshtml" />
+    <Content Include="Views\tbl_ProdutoEncomenda\Details.cshtml" />
+    <Content Include="Views\tbl_ProdutoEncomenda\Edit.cshtml" />
+    <Content Include="Views\tbl_ProdutoEncomenda\Index.cshtml" />
+    <Content Include="Views\tbl_Produtos\Create.cshtml" />
+    <Content Include="Views\tbl_Produtos\Delete.cshtml" />
+    <Content Include="Views\tbl_Produtos\Details.cshtml" />
+    <Content Include="Views\tbl_Produtos\Edit.cshtml" />
+    <Content Include="Views\tbl_Produtos\Index.cshtml" />
+    <Content Include="Views\tbl_Sub_Categoria\Create.cshtml" />
+    <Content Include="Views\tbl_Sub_Categoria\Delete.cshtml" />
+    <Content Include="Views\tbl_Sub_Categoria\Details.cshtml" />
+    <Content Include="Views\tbl_Sub_Categoria\Edit.cshtml" />
+    <Content Include="Views\tbl_Sub_Categoria\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -12,7 +12,7 @@ namespace FreerideMTB_Store.Controllers
 {
     public class tbl_ProdutosController : Controller
     {
-        private DBModel db = new DBModel();
+        private FreerideEntities db = new FreerideEntities();
 
         // GET: tbl_Produtos
         public ActionResult Index()
@@ -44,12 +44,12 @@ namespace FreerideMTB_Store.Controllers
             return View();
         }
 
-        // POST: tbl_Produtos/Create Id_produto,
+        // POST: tbl_Produtos/Create
         // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Nome,Descricao,Preco,Foto,Categoria,Sub_Categoria,Stock")] tbl_Produtos tbl_Produtos)
+        public ActionResult Create([Bind(Include = "Id_produto,Nome,Descricao,Preco,Foto,Categoria,Sub_Categoria,Stock")] tbl_Produtos tbl_Produtos)
         {
             if (ModelState.IsValid)
             {

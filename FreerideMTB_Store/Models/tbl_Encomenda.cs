@@ -23,8 +23,10 @@ namespace FreerideMTB_Store.Models
         public int Id_Encomenda { get; set; }
         public int Quantidade { get; set; }
         public System.DateTime Data { get; set; }
+        public string UserName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_ProdutoEncomenda> tbl_ProdutoEncomenda { get; set; }
+        public virtual AspNetUsers AspNetUsers { get; set; }
     }
 }

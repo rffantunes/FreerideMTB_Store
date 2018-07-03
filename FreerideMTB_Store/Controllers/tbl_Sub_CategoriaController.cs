@@ -12,7 +12,7 @@ namespace FreerideMTB_Store.Controllers
 {
     public class tbl_Sub_CategoriaController : Controller
     {
-        private DBModel db = new DBModel();
+        private FreerideEntities db = new FreerideEntities();
 
         // GET: tbl_Sub_Categoria
         public ActionResult Index()
@@ -61,19 +61,6 @@ namespace FreerideMTB_Store.Controllers
             return View(tbl_Sub_Categoria);
         }
 
-
-        //private SelectList GetCatList()
-        //{
-
-        //    return db.tbl_Categoria
-        //      .Select(e => new SelectListItem
-        //      {
-
-        //          Value = e.Id_cat,
-        //          Text = e.Nome
-        //      })
-        //     .ToList();
-        //}
         // GET: tbl_Sub_Categoria/Edit/5
         public ActionResult Edit(int? id)
         {

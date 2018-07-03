@@ -5,14 +5,14 @@ namespace FreerideMTB_Store.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<FreerideMTB_Store.Models.DBModel>
+    internal sealed class Configuration : DbMigrationsConfiguration<FreerideMTB_Store.Models.FreerideEntities>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(FreerideMTB_Store.Models.DBModel context)
+        protected override void Seed(FreerideMTB_Store.Models.FreerideEntities context)
         {
             //  This method will be called after migrating to the latest version.
 
