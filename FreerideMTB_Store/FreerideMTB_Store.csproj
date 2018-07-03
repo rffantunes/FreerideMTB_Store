@@ -203,18 +203,55 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\AspNetRoles.cs" />
-    <Compile Include="Models\AspNetUserClaims.cs" />
-    <Compile Include="Models\AspNetUserLogins.cs" />
-    <Compile Include="Models\AspNetUsers.cs" />
-    <Compile Include="Models\C__MigrationHistory.cs" />
+    <Compile Include="Models\AspNetRoles.cs">
+      <DependentUpon>FreeRideDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserClaims.cs">
+      <DependentUpon>FreeRideDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserLogins.cs">
+      <DependentUpon>FreeRideDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUsers.cs">
+      <DependentUpon>FreeRideDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C__MigrationHistory.cs">
+      <DependentUpon>FreeRideDb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DBModel.cs" />
+    <Compile Include="Models\FreeRideDb.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FreeRideDb.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FreeRideDb.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FreeRideDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FreeRideDb.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FreeRideDb.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\tbl_Categoria.cs" />
-    <Compile Include="Models\tbl_Encomenda.cs" />
-    <Compile Include="Models\tbl_Produtos.cs" />
-    <Compile Include="Models\tbl_Sub_Categoria.cs" />
+    <Compile Include="Models\ProdutoEncomenda.cs" />
+    <Compile Include="Models\tbl_Categoria.cs">
+      <DependentUpon>FreeRideDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_Encomenda.cs">
+      <DependentUpon>FreeRideDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_ProdutoEncomenda.cs">
+      <DependentUpon>FreeRideDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_Produtos.cs">
+      <DependentUpon>FreeRideDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_Sub_Categoria.cs">
+      <DependentUpon>FreeRideDb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -242,9 +279,26 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <EntityDeploy Include="Models\FreeRideDb.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FreeRideDb.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\FreeRideDb.edmx.diagram">
+      <DependentUpon>FreeRideDb.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Imagens\icon_btt.png" />
     <Content Include="Imagens\TrekLogo.png" />
+    <Content Include="Models\FreeRideDb.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FreeRideDb.edmx</DependentUpon>
+      <LastGenOutput>FreeRideDb.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\FreeRideDb.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FreeRideDb.edmx</DependentUpon>
+      <LastGenOutput>FreeRideDb.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -312,7 +366,9 @@
     <Content Include="Views\tbl_Encomenda\Edit.cshtml" />
     <Content Include="Views\tbl_Encomenda\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

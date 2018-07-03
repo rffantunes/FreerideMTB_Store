@@ -12,11 +12,14 @@ namespace FreerideMTB_Store.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class C__MigrationHistory
+    public partial class tbl_ProdutoEncomenda
     {
-        public string MigrationId { get; set; }
-        public string ContextKey { get; set; }
-        public byte[] Model { get; set; }
-        public string ProductVersion { get; set; }
+        public int Id_produto { get; set; }
+        public int Id_Encomenda { get; set; }
+        public int Quantidade { get; set; }
+        public decimal Preco { get; set; }
+    
+        public virtual tbl_Encomenda tbl_Encomenda { get; set; }
+        public virtual tbl_Produtos tbl_Produtos { get; set; }
     }
 }
