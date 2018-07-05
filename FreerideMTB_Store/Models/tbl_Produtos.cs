@@ -18,20 +18,26 @@ namespace FreerideMTB_Store.Models
         public tbl_Produtos()
         {
             this.tbl_ProdutoEncomenda = new HashSet<tbl_ProdutoEncomenda>();
+            this.tbl_Imagens = new HashSet<tbl_Imagens>();
         }
     
         public int Id_produto { get; set; }
         public string Nome { get; set; }
         public string Descricao { get; set; }
-        public Nullable<decimal> Preco { get; set; }
-        public string Foto { get; set; }
+        public decimal Preco { get; set; }
         public int Categoria { get; set; }
         public Nullable<int> Sub_Categoria { get; set; }
-        public string Stock { get; set; }
+        public Nullable<bool> Stock { get; set; }
+        public Nullable<double> Peso { get; set; }
+        public string SKU { get; set; }
+        public Nullable<int> Marca { get; set; }
     
         public virtual tbl_Categoria tbl_Categoria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_ProdutoEncomenda> tbl_ProdutoEncomenda { get; set; }
         public virtual tbl_Sub_Categoria tbl_Sub_Categoria { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_Imagens> tbl_Imagens { get; set; }
+        public virtual tbl_Marca tbl_Marca { get; set; }
     }
 }

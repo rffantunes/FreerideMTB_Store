@@ -21,22 +21,33 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                
+
                 @*Icone do menu*@
                 <a href="@Url.Action("Index","Home")" class="logoclass">
                     <img src="@Url.Content("~/Imagens/icon_btt.png")" id="logo" />
-                   Freeride
+                    Freeride
                 </a>
-                   
-                
+
+
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Sobre", "About", "Home")</li>
                     <li>@Html.ActionLink("Contato", "Contact", "Home")</li>
+                    @* Replicar linha (Nome a aparecer, Nome View, Nome Pasta View) *@
+                    <li>@Html.ActionLink("Produtos", "Index", "tbl_Produtos")</li>
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
+            @*<div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                     Replicar linha (Nome a aparecer, Nome View, Nome Pasta View) 
+                    <li>@Html.ActionLink("Produtos", "Index", "tbl_Produtos")</li>
+
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>*@
         </div>
     </div>
     <div class="container body-content">

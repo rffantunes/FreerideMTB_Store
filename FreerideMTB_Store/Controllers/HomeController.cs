@@ -26,5 +26,20 @@ namespace FreerideMTB_Store.Controllers
 
             return View();
         }
+
+        public ActionResult Produtos()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        //Criar ViewBag com foreach para cada categoria criar um <li>
+        //public ActionResult Produtos()
+        //{
+        //    ViewBag.Message = "Your contact page.";
+
+        //    return View();
+        //}
     }
 }

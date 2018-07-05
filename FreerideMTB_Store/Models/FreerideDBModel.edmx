@@ -83,6 +83,31 @@
           <Property Name="Data" Type="datetime" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
+        <EntityType Name="tbl_Imagens">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TituloImg" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Caminho" Type="nchar" MaxLength="256" Nullable="false" />
+          <Property Name="Descricao" Type="nchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="tbl_ImagensProduto">
+          <Key>
+            <PropertyRef Name="IdImagem" />
+            <PropertyRef Name="IdProduto" />
+          </Key>
+          <Property Name="IdImagem" Type="int" Nullable="false" />
+          <Property Name="IdProduto" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Marca">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="site" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="tbl_ProdutoEncomenda">
           <Key>
             <PropertyRef Name="Id_produto" />
@@ -100,11 +125,13 @@
           <Property Name="Id_produto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nome" Type="varchar(max)" Nullable="false" />
           <Property Name="Descricao" Type="varchar(max)" />
-          <Property Name="Preco" Type="money" />
-          <Property Name="Foto" Type="varchar(max)" />
+          <Property Name="Preco" Type="money" Nullable="false" />
           <Property Name="Categoria" Type="int" Nullable="false" />
           <Property Name="Sub_Categoria" Type="int" />
-          <Property Name="Stock" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="Stock" Type="bit" />
+          <Property Name="Peso" Type="float" />
+          <Property Name="SKU" Type="nchar" MaxLength="256" />
+          <Property Name="Marca" Type="int" />
         </EntityType>
         <EntityType Name="tbl_Sub_Categoria">
           <Key>
@@ -206,6 +233,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tbl_ImagensProduto_tbl_Imagens">
+          <End Role="tbl_Imagens" Type="Self.tbl_Imagens" Multiplicity="1" />
+          <End Role="tbl_ImagensProduto" Type="Self.tbl_ImagensProduto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Imagens">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_ImagensProduto">
+              <PropertyRef Name="IdImagem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_ImagensProduto_tbl_Produto">
+          <End Role="tbl_Produtos" Type="Self.tbl_Produtos" Multiplicity="1" />
+          <End Role="tbl_ImagensProduto" Type="Self.tbl_ImagensProduto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Produtos">
+              <PropertyRef Name="Id_produto" />
+            </Principal>
+            <Dependent Role="tbl_ImagensProduto">
+              <PropertyRef Name="IdProduto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Produtos_tbl_Marca">
+          <End Role="tbl_Marca" Type="Self.tbl_Marca" Multiplicity="0..1" />
+          <End Role="tbl_Produtos" Type="Self.tbl_Produtos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Marca">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_Produtos">
+              <PropertyRef Name="Marca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tbl_Produtos_ToCategoria">
           <End Role="tbl_Categoria" Type="Self.tbl_Categoria" Multiplicity="1" />
           <End Role="tbl_Produtos" Type="Self.tbl_Produtos" Multiplicity="*" />
@@ -251,6 +314,9 @@
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Categoria" EntityType="Self.tbl_Categoria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Encomenda" EntityType="Self.tbl_Encomenda" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Imagens" EntityType="Self.tbl_Imagens" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ImagensProduto" EntityType="Self.tbl_ImagensProduto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Marca" EntityType="Self.tbl_Marca" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_ProdutoEncomenda" EntityType="Self.tbl_ProdutoEncomenda" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Produtos" EntityType="Self.tbl_Produtos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Sub_Categoria" EntityType="Self.tbl_Sub_Categoria" Schema="dbo" store:Type="Tables" />
@@ -281,6 +347,18 @@
           <AssociationSet Name="FK_tbl_Encomenda_NetUsers" Association="Self.FK_tbl_Encomenda_NetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="tbl_Encomenda" EntitySet="tbl_Encomenda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_ImagensProduto_tbl_Imagens" Association="Self.FK_tbl_ImagensProduto_tbl_Imagens">
+            <End Role="tbl_Imagens" EntitySet="tbl_Imagens" />
+            <End Role="tbl_ImagensProduto" EntitySet="tbl_ImagensProduto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_ImagensProduto_tbl_Produto" Association="Self.FK_tbl_ImagensProduto_tbl_Produto">
+            <End Role="tbl_Produtos" EntitySet="tbl_Produtos" />
+            <End Role="tbl_ImagensProduto" EntitySet="tbl_ImagensProduto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Produtos_tbl_Marca" Association="Self.FK_tbl_Produtos_tbl_Marca">
+            <End Role="tbl_Marca" EntitySet="tbl_Marca" />
+            <End Role="tbl_Produtos" EntitySet="tbl_Produtos" />
           </AssociationSet>
           <AssociationSet Name="FK_tbl_Produtos_ToCategoria" Association="Self.FK_tbl_Produtos_ToCategoria">
             <End Role="tbl_Categoria" EntitySet="tbl_Categoria" />
@@ -366,8 +444,8 @@
           <Property Name="Id_cat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nome" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Descricao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="tbl_Produtos" Relationship="Self.FK_tbl_Produtos_ToCategoria" FromRole="tbl_Categoria" ToRole="tbl_Produtos" />
           <NavigationProperty Name="tbl_Sub_Categoria" Relationship="Self.FK_tbl_Sub_Categoria_ToCategoria" FromRole="tbl_Categoria" ToRole="tbl_Sub_Categoria" />
+          <NavigationProperty Name="tbl_Produtos" Relationship="FreerideModel.FK_tbl_Produtos_ToCategoria" FromRole="tbl_Categoria" ToRole="tbl_Produtos" />
         </EntityType>
         <EntityType Name="tbl_Encomenda">
           <Key>
@@ -390,23 +468,7 @@
           <Property Name="Quantidade" Type="Int32" Nullable="false" />
           <Property Name="Preco" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <NavigationProperty Name="tbl_Encomenda" Relationship="Self.FK_Intermedia_ToEncomenda" FromRole="tbl_ProdutoEncomenda" ToRole="tbl_Encomenda" />
-          <NavigationProperty Name="tbl_Produtos" Relationship="Self.FK_Intermedia_ToProduto" FromRole="tbl_ProdutoEncomenda" ToRole="tbl_Produtos" />
-        </EntityType>
-        <EntityType Name="tbl_Produtos">
-          <Key>
-            <PropertyRef Name="Id_produto" />
-          </Key>
-          <Property Name="Id_produto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nome" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Descricao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Preco" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="Foto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Categoria" Type="Int32" Nullable="false" />
-          <Property Name="Sub_Categoria" Type="Int32" />
-          <Property Name="Stock" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="tbl_Categoria" Relationship="Self.FK_tbl_Produtos_ToCategoria" FromRole="tbl_Produtos" ToRole="tbl_Categoria" />
-          <NavigationProperty Name="tbl_ProdutoEncomenda" Relationship="Self.FK_Intermedia_ToProduto" FromRole="tbl_Produtos" ToRole="tbl_ProdutoEncomenda" />
-          <NavigationProperty Name="tbl_Sub_Categoria" Relationship="Self.FK_tbl_Produtos_ToSub_Categoria" FromRole="tbl_Produtos" ToRole="tbl_Sub_Categoria" />
+          <NavigationProperty Name="tbl_Produtos" Relationship="FreerideModel.FK_Intermedia_ToProduto" FromRole="tbl_ProdutoEncomenda" ToRole="tbl_Produtos" />
         </EntityType>
         <EntityType Name="tbl_Sub_Categoria">
           <Key>
@@ -416,7 +478,7 @@
           <Property Name="Nome" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="id_cat" Type="Int32" />
           <NavigationProperty Name="tbl_Categoria" Relationship="Self.FK_tbl_Sub_Categoria_ToCategoria" FromRole="tbl_Sub_Categoria" ToRole="tbl_Categoria" />
-          <NavigationProperty Name="tbl_Produtos" Relationship="Self.FK_tbl_Produtos_ToSub_Categoria" FromRole="tbl_Sub_Categoria" ToRole="tbl_Produtos" />
+          <NavigationProperty Name="tbl_Produtos" Relationship="FreerideModel.FK_tbl_Produtos_ToSub_Categoria" FromRole="tbl_Sub_Categoria" ToRole="tbl_Produtos" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
@@ -446,18 +508,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tbl_Produtos_ToCategoria">
-          <End Role="tbl_Categoria" Type="Self.tbl_Categoria" Multiplicity="1" />
-          <End Role="tbl_Produtos" Type="Self.tbl_Produtos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbl_Categoria">
-              <PropertyRef Name="Id_cat" />
-            </Principal>
-            <Dependent Role="tbl_Produtos">
-              <PropertyRef Name="Categoria" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_tbl_Sub_Categoria_ToCategoria">
           <End Role="tbl_Categoria" Type="Self.tbl_Categoria" Multiplicity="0..1" />
           <End Role="tbl_Sub_Categoria" Type="Self.tbl_Sub_Categoria" Multiplicity="*" />
@@ -482,30 +532,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Intermedia_ToProduto">
-          <End Role="tbl_Produtos" Type="Self.tbl_Produtos" Multiplicity="1" />
-          <End Role="tbl_ProdutoEncomenda" Type="Self.tbl_ProdutoEncomenda" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbl_Produtos">
-              <PropertyRef Name="Id_produto" />
-            </Principal>
-            <Dependent Role="tbl_ProdutoEncomenda">
-              <PropertyRef Name="Id_produto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tbl_Produtos_ToSub_Categoria">
-          <End Role="tbl_Sub_Categoria" Type="Self.tbl_Sub_Categoria" Multiplicity="0..1" />
-          <End Role="tbl_Produtos" Type="Self.tbl_Produtos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbl_Sub_Categoria">
-              <PropertyRef Name="Id_sub_cat" />
-            </Principal>
-            <Dependent Role="tbl_Produtos">
-              <PropertyRef Name="Sub_Categoria" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="AspNetUserRoles">
           <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
@@ -519,7 +545,6 @@
           <EntitySet Name="tbl_Categoria" EntityType="Self.tbl_Categoria" />
           <EntitySet Name="tbl_Encomenda" EntityType="Self.tbl_Encomenda" />
           <EntitySet Name="tbl_ProdutoEncomenda" EntityType="Self.tbl_ProdutoEncomenda" />
-          <EntitySet Name="tbl_Produtos" EntityType="Self.tbl_Produtos" />
           <EntitySet Name="tbl_Sub_Categoria" EntityType="Self.tbl_Sub_Categoria" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -529,10 +554,6 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
           </AssociationSet>
-          <AssociationSet Name="FK_tbl_Produtos_ToCategoria" Association="Self.FK_tbl_Produtos_ToCategoria">
-            <End Role="tbl_Categoria" EntitySet="tbl_Categoria" />
-            <End Role="tbl_Produtos" EntitySet="tbl_Produtos" />
-          </AssociationSet>
           <AssociationSet Name="FK_tbl_Sub_Categoria_ToCategoria" Association="Self.FK_tbl_Sub_Categoria_ToCategoria">
             <End Role="tbl_Categoria" EntitySet="tbl_Categoria" />
             <End Role="tbl_Sub_Categoria" EntitySet="tbl_Sub_Categoria" />
@@ -541,14 +562,6 @@
             <End Role="tbl_Encomenda" EntitySet="tbl_Encomenda" />
             <End Role="tbl_ProdutoEncomenda" EntitySet="tbl_ProdutoEncomenda" />
           </AssociationSet>
-          <AssociationSet Name="FK_Intermedia_ToProduto" Association="Self.FK_Intermedia_ToProduto">
-            <End Role="tbl_Produtos" EntitySet="tbl_Produtos" />
-            <End Role="tbl_ProdutoEncomenda" EntitySet="tbl_ProdutoEncomenda" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tbl_Produtos_ToSub_Categoria" Association="Self.FK_tbl_Produtos_ToSub_Categoria">
-            <End Role="tbl_Sub_Categoria" EntitySet="tbl_Sub_Categoria" />
-            <End Role="tbl_Produtos" EntitySet="tbl_Produtos" />
-          </AssociationSet>
           <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -556,6 +569,29 @@
           <AssociationSet Name="FK_tbl_Encomenda_NetUsers" Association="FreerideModel.FK_tbl_Encomenda_NetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="tbl_Encomenda" EntitySet="tbl_Encomenda" />
+          </AssociationSet>
+          <EntitySet Name="tbl_Imagens" EntityType="FreerideModel.tbl_Imagens" />
+          <EntitySet Name="tbl_Produtos" EntityType="FreerideModel.tbl_Produtos" />
+          <AssociationSet Name="FK_tbl_Produtos_ToCategoria" Association="FreerideModel.FK_tbl_Produtos_ToCategoria">
+            <End Role="tbl_Categoria" EntitySet="tbl_Categoria" />
+            <End Role="tbl_Produtos" EntitySet="tbl_Produtos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Intermedia_ToProduto" Association="FreerideModel.FK_Intermedia_ToProduto">
+            <End Role="tbl_Produtos" EntitySet="tbl_Produtos" />
+            <End Role="tbl_ProdutoEncomenda" EntitySet="tbl_ProdutoEncomenda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Produtos_ToSub_Categoria" Association="FreerideModel.FK_tbl_Produtos_ToSub_Categoria">
+            <End Role="tbl_Sub_Categoria" EntitySet="tbl_Sub_Categoria" />
+            <End Role="tbl_Produtos" EntitySet="tbl_Produtos" />
+          </AssociationSet>
+          <AssociationSet Name="tbl_ImagensProduto" Association="FreerideModel.tbl_ImagensProduto">
+            <End Role="tbl_Imagens" EntitySet="tbl_Imagens" />
+            <End Role="tbl_Produtos" EntitySet="tbl_Produtos" />
+          </AssociationSet>
+          <EntitySet Name="tbl_Marca" EntityType="FreerideModel.tbl_Marca" />
+          <AssociationSet Name="FK_tbl_Produtos_tbl_Marca" Association="FreerideModel.FK_tbl_Produtos_tbl_Marca">
+            <End Role="tbl_Marca" EntitySet="tbl_Marca" />
+            <End Role="tbl_Produtos" EntitySet="tbl_Produtos" />
           </AssociationSet>
         </EntityContainer>
         <Association Name="FK_tbl_Encomenda_NetUsers">
@@ -567,6 +603,97 @@
             </Principal>
             <Dependent Role="tbl_Encomenda">
               <PropertyRef Name="UserName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tbl_Imagens">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="TituloImg" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Caminho" Type="String" Nullable="false" MaxLength="256" FixedLength="true" Unicode="true" />
+          <Property Name="Descricao" Type="String" MaxLength="256" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="tbl_Produtos" Relationship="FreerideModel.tbl_ImagensProduto" FromRole="tbl_Imagens" ToRole="tbl_Produtos" />
+        </EntityType>
+        <EntityType Name="tbl_Produtos">
+          <Key>
+            <PropertyRef Name="Id_produto" />
+          </Key>
+          <Property Name="Id_produto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Descricao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Preco" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Categoria" Type="Int32" Nullable="false" />
+          <Property Name="Sub_Categoria" Type="Int32" />
+          <Property Name="Stock" Type="Boolean" />
+          <Property Name="Peso" Type="Double" />
+          <Property Name="SKU" Type="String" MaxLength="256" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="tbl_Categoria" Relationship="FreerideModel.FK_tbl_Produtos_ToCategoria" FromRole="tbl_Produtos" ToRole="tbl_Categoria" />
+          <NavigationProperty Name="tbl_ProdutoEncomenda" Relationship="FreerideModel.FK_Intermedia_ToProduto" FromRole="tbl_Produtos" ToRole="tbl_ProdutoEncomenda" />
+          <NavigationProperty Name="tbl_Sub_Categoria" Relationship="FreerideModel.FK_tbl_Produtos_ToSub_Categoria" FromRole="tbl_Produtos" ToRole="tbl_Sub_Categoria" />
+          <NavigationProperty Name="tbl_Imagens" Relationship="FreerideModel.tbl_ImagensProduto" FromRole="tbl_Produtos" ToRole="tbl_Imagens" />
+          <Property Name="Marca" Type="Int32" />
+          <NavigationProperty Name="tbl_Marca" Relationship="FreerideModel.FK_tbl_Produtos_tbl_Marca" FromRole="tbl_Produtos" ToRole="tbl_Marca" />
+        </EntityType>
+        <Association Name="FK_tbl_Produtos_ToCategoria">
+          <End Type="FreerideModel.tbl_Categoria" Role="tbl_Categoria" Multiplicity="1" />
+          <End Type="FreerideModel.tbl_Produtos" Role="tbl_Produtos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Categoria">
+              <PropertyRef Name="Id_cat" />
+            </Principal>
+            <Dependent Role="tbl_Produtos">
+              <PropertyRef Name="Categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Intermedia_ToProduto">
+          <End Type="FreerideModel.tbl_Produtos" Role="tbl_Produtos" Multiplicity="1" />
+          <End Type="FreerideModel.tbl_ProdutoEncomenda" Role="tbl_ProdutoEncomenda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Produtos">
+              <PropertyRef Name="Id_produto" />
+            </Principal>
+            <Dependent Role="tbl_ProdutoEncomenda">
+              <PropertyRef Name="Id_produto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Produtos_ToSub_Categoria">
+          <End Type="FreerideModel.tbl_Sub_Categoria" Role="tbl_Sub_Categoria" Multiplicity="0..1" />
+          <End Type="FreerideModel.tbl_Produtos" Role="tbl_Produtos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Sub_Categoria">
+              <PropertyRef Name="Id_sub_cat" />
+            </Principal>
+            <Dependent Role="tbl_Produtos">
+              <PropertyRef Name="Sub_Categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tbl_ImagensProduto">
+          <End Type="FreerideModel.tbl_Imagens" Role="tbl_Imagens" Multiplicity="*" />
+          <End Type="FreerideModel.tbl_Produtos" Role="tbl_Produtos" Multiplicity="*" />
+        </Association>
+        <EntityType Name="tbl_Marca">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="site" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Produtos" Relationship="FreerideModel.FK_tbl_Produtos_tbl_Marca" FromRole="tbl_Marca" ToRole="tbl_Produtos" />
+        </EntityType>
+        <Association Name="FK_tbl_Produtos_tbl_Marca">
+          <End Type="FreerideModel.tbl_Marca" Role="tbl_Marca" Multiplicity="0..1" />
+          <End Type="FreerideModel.tbl_Produtos" Role="tbl_Produtos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Marca">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_Produtos">
+              <PropertyRef Name="Marca" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -660,20 +787,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbl_Produtos">
-            <EntityTypeMapping TypeName="FreerideModel.tbl_Produtos">
-              <MappingFragment StoreEntitySet="tbl_Produtos">
-                <ScalarProperty Name="Id_produto" ColumnName="Id_produto" />
-                <ScalarProperty Name="Nome" ColumnName="Nome" />
-                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
-                <ScalarProperty Name="Preco" ColumnName="Preco" />
-                <ScalarProperty Name="Foto" ColumnName="Foto" />
-                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
-                <ScalarProperty Name="Sub_Categoria" ColumnName="Sub_Categoria" />
-                <ScalarProperty Name="Stock" ColumnName="Stock" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tbl_Sub_Categoria">
             <EntityTypeMapping TypeName="FreerideModel.tbl_Sub_Categoria">
               <MappingFragment StoreEntitySet="tbl_Sub_Categoria">
@@ -691,6 +804,49 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="tbl_Imagens">
+            <EntityTypeMapping TypeName="FreerideModel.tbl_Imagens">
+              <MappingFragment StoreEntitySet="tbl_Imagens">
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Caminho" ColumnName="Caminho" />
+                <ScalarProperty Name="TituloImg" ColumnName="TituloImg" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Produtos">
+            <EntityTypeMapping TypeName="FreerideModel.tbl_Produtos">
+              <MappingFragment StoreEntitySet="tbl_Produtos">
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="SKU" ColumnName="SKU" />
+                <ScalarProperty Name="Peso" ColumnName="Peso" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="Sub_Categoria" ColumnName="Sub_Categoria" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="Preco" ColumnName="Preco" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Id_produto" ColumnName="Id_produto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="tbl_ImagensProduto" TypeName="FreerideModel.tbl_ImagensProduto" StoreEntitySet="tbl_ImagensProduto">
+            <EndProperty Name="tbl_Produtos">
+              <ScalarProperty Name="Id_produto" ColumnName="IdProduto" />
+            </EndProperty>
+            <EndProperty Name="tbl_Imagens">
+              <ScalarProperty Name="Id" ColumnName="IdImagem" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="tbl_Marca">
+            <EntityTypeMapping TypeName="FreerideModel.tbl_Marca">
+              <MappingFragment StoreEntitySet="tbl_Marca">
+                <ScalarProperty Name="site" ColumnName="site" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

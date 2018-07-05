@@ -17,7 +17,7 @@ namespace FreerideMTB_Store.Controllers
         // GET: tbl_Produtos
         public ActionResult Index()
         {
-            var tbl_Produtos = db.tbl_Produtos.Include(t => t.tbl_Categoria).Include(t => t.tbl_Sub_Categoria);
+            var tbl_Produtos = db.tbl_Produtos.Include(t => t.tbl_Categoria).Include(t => t.tbl_Sub_Categoria).Include(t => t.tbl_Marca);
             return View(tbl_Produtos.ToList());
         }
 
@@ -41,6 +41,7 @@ namespace FreerideMTB_Store.Controllers
         {
             ViewBag.Categoria = new SelectList(db.tbl_Categoria, "Id_cat", "Nome");
             ViewBag.Sub_Categoria = new SelectList(db.tbl_Sub_Categoria, "Id_sub_cat", "Nome");
+            ViewBag.Marca = new SelectList(db.tbl_Marca, "Id", "Nome");
             return View();
         }
 
@@ -49,7 +50,7 @@ namespace FreerideMTB_Store.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id_produto,Nome,Descricao,Preco,Foto,Categoria,Sub_Categoria,Stock")] tbl_Produtos tbl_Produtos)
+        public ActionResult Create([Bind(Include = "Id_produto,Nome,Descricao,Preco,Categoria,Sub_Categoria,Stock,Peso,SKU,Marca")] tbl_Produtos tbl_Produtos)
         {
             if (ModelState.IsValid)
             {
@@ -60,6 +61,7 @@ namespace FreerideMTB_Store.Controllers
 
             ViewBag.Categoria = new SelectList(db.tbl_Categoria, "Id_cat", "Nome", tbl_Produtos.Categoria);
             ViewBag.Sub_Categoria = new SelectList(db.tbl_Sub_Categoria, "Id_sub_cat", "Nome", tbl_Produtos.Sub_Categoria);
+            ViewBag.Marca = new SelectList(db.tbl_Marca, "Id", "Nome", tbl_Produtos.Marca);
             return View(tbl_Produtos);
         }
 
@@ -77,6 +79,7 @@ namespace FreerideMTB_Store.Controllers
             }
             ViewBag.Categoria = new SelectList(db.tbl_Categoria, "Id_cat", "Nome", tbl_Produtos.Categoria);
             ViewBag.Sub_Categoria = new SelectList(db.tbl_Sub_Categoria, "Id_sub_cat", "Nome", tbl_Produtos.Sub_Categoria);
+            ViewBag.Marca = new SelectList(db.tbl_Marca, "Id", "Nome", tbl_Produtos.Marca);
             return View(tbl_Produtos);
         }
 
@@ -85,7 +88,7 @@ namespace FreerideMTB_Store.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id_produto,Nome,Descricao,Preco,Foto,Categoria,Sub_Categoria,Stock")] tbl_Produtos tbl_Produtos)
+        public ActionResult Edit([Bind(Include = "Id_produto,Nome,Descricao,Preco,Categoria,Sub_Categoria,Stock,Peso,SKU,Marca")] tbl_Produtos tbl_Produtos)
         {
             if (ModelState.IsValid)
             {
@@ -95,6 +98,7 @@ namespace FreerideMTB_Store.Controllers
             }
             ViewBag.Categoria = new SelectList(db.tbl_Categoria, "Id_cat", "Nome", tbl_Produtos.Categoria);
             ViewBag.Sub_Categoria = new SelectList(db.tbl_Sub_Categoria, "Id_sub_cat", "Nome", tbl_Produtos.Sub_Categoria);
+            ViewBag.Marca = new SelectList(db.tbl_Marca, "Id", "Nome", tbl_Produtos.Marca);
             return View(tbl_Produtos);
         }
 

@@ -19,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Descricao)
+            Descrição
         </dt>
 
         <dd>
@@ -27,19 +27,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Preco)
+            Preço
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Preco)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Foto)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Foto)
         </dd>
 
         <dt>
@@ -51,7 +43,23 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.tbl_Categoria.Nome)
+            @Html.DisplayNameFor(model => model.Peso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Peso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SKU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SKU)
+        </dd>
+
+        <dt>
+           Categoria
         </dt>
 
         <dd>
@@ -59,11 +67,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.tbl_Sub_Categoria.Nome)
+           Sub-Categoria
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.tbl_Sub_Categoria.Nome)
+        </dd>
+
+        <dt>
+            Marca
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_Marca.Nome)
         </dd>
 
     </dl>

@@ -196,6 +196,8 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\tbl_CategoriaController.cs" />
     <Compile Include="Controllers\tbl_EncomendaController.cs" />
+    <Compile Include="Controllers\tbl_ImagensController.cs" />
+    <Compile Include="Controllers\tbl_MarcaController.cs" />
     <Compile Include="Controllers\tbl_ProdutoEncomendaController.cs" />
     <Compile Include="Controllers\tbl_ProdutosController.cs" />
     <Compile Include="Controllers\tbl_Sub_CategoriaController.cs" />
@@ -241,6 +243,12 @@
       <DependentUpon>FreerideDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbl_Encomenda.cs">
+      <DependentUpon>FreerideDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_Imagens.cs">
+      <DependentUpon>FreerideDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_Marca.cs">
       <DependentUpon>FreerideDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbl_ProdutoEncomenda.cs">
@@ -357,6 +365,16 @@
     <Content Include="Views\tbl_Encomenda\Details.cshtml" />
     <Content Include="Views\tbl_Encomenda\Edit.cshtml" />
     <Content Include="Views\tbl_Encomenda\Index.cshtml" />
+    <Content Include="Views\tbl_Imagens\Create.cshtml" />
+    <Content Include="Views\tbl_Imagens\Delete.cshtml" />
+    <Content Include="Views\tbl_Imagens\Details.cshtml" />
+    <Content Include="Views\tbl_Imagens\Edit.cshtml" />
+    <Content Include="Views\tbl_Imagens\Index.cshtml" />
+    <Content Include="Views\tbl_Marca\Create.cshtml" />
+    <Content Include="Views\tbl_Marca\Delete.cshtml" />
+    <Content Include="Views\tbl_Marca\Details.cshtml" />
+    <Content Include="Views\tbl_Marca\Edit.cshtml" />
+    <Content Include="Views\tbl_Marca\Index.cshtml" />
     <Content Include="Views\tbl_ProdutoEncomenda\Create.cshtml" />
     <Content Include="Views\tbl_ProdutoEncomenda\Delete.cshtml" />
     <Content Include="Views\tbl_ProdutoEncomenda\Details.cshtml" />

@@ -15,22 +15,28 @@
             @Html.DisplayNameFor(model => model.Nome)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Descricao)
+           Descrição
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Preco)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Foto)
+            Preço
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Stock)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.tbl_Categoria.Nome)
+            @Html.DisplayNameFor(model => model.Peso)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.tbl_Sub_Categoria.Nome)
+            @Html.DisplayNameFor(model => model.SKU)
+        </th>
+        <th>
+            Categoria
+        </th>
+        <th>
+            Sub Categoria
+        </th>
+        <th>
+            Marca
         </th>
         <th></th>
     </tr>
@@ -47,16 +53,22 @@
             @Html.DisplayFor(modelItem => item.Preco)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Foto)
+            @Html.DisplayFor(modelItem => item.Stock)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Stock)
+            @Html.DisplayFor(modelItem => item.Peso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SKU)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.tbl_Categoria.Nome)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.tbl_Sub_Categoria.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_Marca.Nome)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id_produto }) |
