@@ -1,4 +1,6 @@
-﻿@{
+﻿@model FreerideMTB_Store.Models.HomeViewModel
+
+@{
     ViewBag.Title = "Freeride MTB Store";
 }
 
@@ -24,6 +26,60 @@
     <h1>Freeride MTB Store</h1>
     <p class="lead">A loja onde encontrará tudo o que precisa para o seu desporto favorito.</p>
 </div>
+
+<table>
+    <tr>
+        <td>
+            @*Criar tabela para apresentar 2 produtos na home*@
+            <table>
+                <tr>
+                    <th>Equipamentos</th>
+                </tr>
+                @foreach (var Produto in Model.ListaProdutos.Where(c => c.Categoria == 1).Take(2))
+                {
+                    <tr onclick="window.location.href = '/tbl_Produtos/Details/' + '@Produto.Id_produto';" style="cursor:pointer">
+                        <td>
+                            @{IEnumerable<FreerideMTB_Store.Models.tbl_Imagens> Linha = Model.ListaImagens.Where(c => c.tbl_Produtos.Any(x => x.Id_produto == Produto.Id_produto)).Take(1);
+                                string a = (String)Linha.Select(x => x.Caminho).FirstOrDefault();
+
+                                <img src="@a" width="40px" height="40px">
+                            }
+                        </td>
+                        <td>
+                            <h3>@Produto.Nome</h3>
+                            <p>@Produto.Descricao</p>
+                        </td>
+                    </tr>
+                }
+            </table>
+            </td>
+
+            @*Criar tabela para apresentar 2 produtos na home de outra categoria*@
+        <td>
+            <table>
+                <tr>
+                    <th>Bicicletas</th>
+                </tr>
+                @foreach (var Produto in Model.ListaProdutos.Where(c => c.Categoria == 2).Take(2))
+                {
+                    <tr onclick="window.location.href = '/tbl_Produtos/Details/' + '@Produto.Id_produto';" style="cursor:pointer">
+                        <td>
+                            @{IEnumerable<FreerideMTB_Store.Models.tbl_Imagens> Linha = Model.ListaImagens.Where(c => c.tbl_Produtos.Any(x => x.Id_produto == Produto.Id_produto)).Take(1);
+                                string a = (String)Linha.Select(x => x.Caminho).FirstOrDefault();
+
+                                <img src="@a">
+                            }
+                        </td>
+                        <td>
+                            <h3>@Produto.Nome</h3>
+                            <p>@Produto.Descricao</p>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </td>
+    </tr>
+</table>
 
 <div class="row">
     <div class="col-md-4">

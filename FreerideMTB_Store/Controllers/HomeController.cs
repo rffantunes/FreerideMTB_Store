@@ -8,9 +8,18 @@ namespace FreerideMTB_Store.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+
+        public tbl_ImagensController imgC = new tbl_ImagensController();
+        public tbl_ProdutosController ProdC = new tbl_ProdutosController();
+
+
+
+        public ActionResult Index(FreerideMTB_Store.Models.HomeViewModel VM)
         {
-            return View();
+            VM.ListaImagens = imgC.getImagens();
+            VM.ListaProdutos = ProdC.getProdutos();
+
+            return View(VM);
         }
 
         public ActionResult About()

@@ -124,7 +124,7 @@
           </Key>
           <Property Name="Id_produto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nome" Type="varchar(max)" Nullable="false" />
-          <Property Name="Descricao" Type="varchar(max)" />
+          <Property Name="Descricao" Type="ntext" />
           <Property Name="Preco" Type="money" Nullable="false" />
           <Property Name="Categoria" Type="int" Nullable="false" />
           <Property Name="Sub_Categoria" Type="int" />
@@ -622,7 +622,7 @@
           </Key>
           <Property Name="Id_produto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nome" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Descricao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Descricao" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Preco" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="Categoria" Type="Int32" Nullable="false" />
           <Property Name="Sub_Categoria" Type="Int32" />

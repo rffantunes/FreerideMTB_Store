@@ -14,6 +14,19 @@ namespace FreerideMTB_Store.Controllers
     {
         private FreerideEntities db = new FreerideEntities();
 
+
+        //Criar uma listagem para aceder às a partir de qualquer página
+
+
+        public List<tbl_Imagens> getImagens()
+        {                               ////LINQ Code
+            var lsImagens = db.tbl_Imagens.Include(c => c.tbl_Produtos);
+
+            return lsImagens.ToList();
+        }
+
+
+
         // GET: tbl_Imagens
         public ActionResult Index()
         {

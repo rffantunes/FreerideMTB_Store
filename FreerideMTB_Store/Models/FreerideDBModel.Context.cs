@@ -10,11 +10,18 @@
 namespace FreerideMTB_Store.Models
 {
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
     public partial class FreerideEntities : DbContext
     {
+
+        public List<tbl_Imagens> ListaImagens { get; set; }
+
+
+
+
         public FreerideEntities()
             : base("name=FreerideEntities")
         {
