@@ -44,5 +44,6 @@ namespace FreerideMTB_Store.Models
         public virtual DbSet<tbl_Imagens> tbl_Imagens { get; set; }
         public virtual DbSet<tbl_Produtos> tbl_Produtos { get; set; }
         public virtual DbSet<tbl_Marca> tbl_Marca { get; set; }
+
     }
 }

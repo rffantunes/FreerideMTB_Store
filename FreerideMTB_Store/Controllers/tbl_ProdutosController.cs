@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -14,22 +16,40 @@ namespace FreerideMTB_Store.Controllers
     {
         private FreerideEntities db = new FreerideEntities();
 
-        public tbl_ImagensController imgC = new tbl_ImagensController();
+         public tbl_ImagensController imgC = new tbl_ImagensController();
 
         //Criar uma listagem para aceder aos produtos a partir de qualquer página
         public List<tbl_Produtos> getProdutos()
-        {                               ////LINQ Code
+        {          
+            
+            ////LINQ Code
             var lsProducts = db.tbl_Produtos.Include(c => c.tbl_Categoria).Include(c => c.tbl_Sub_Categoria).Include(c => c.tbl_Marca);
             return lsProducts.ToList();
         }
 
         // GET: tbl_Produtos
-        public ActionResult Index()
+        public ActionResult Index(int? CatId)
         {
-            
+            //Para criar uma lista onde mostra os produtos e as imagens
             var tbl_Produtos = db.tbl_Produtos.Include(t => t.tbl_Categoria).Include(t => t.tbl_Sub_Categoria).Include(t => t.tbl_Marca);
+
+
+            //Filtering Sorting Paging
+            if (CatId != null)
+            {
+                tbl_Produtos = tbl_Produtos.Where(s => s.Categoria == CatId);
+
+            }
+
+
+
+
+
+            //Para criar uma lista onde mostra os produtos e as imagens
+            //var tbl_Produtos = db.tbl_Produtos.Include(t => t.tbl_Categoria).Include(t => t.tbl_Sub_Categoria).Include(t => t.tbl_Marca);
             var tbl_Imagens = db.tbl_Imagens;
             ViewBag.ListaImagens = tbl_Imagens;
+            ViewBag.ListaCategorias = db.tbl_Categoria.ToList();
 
             return View(tbl_Produtos.ToList());
         }
@@ -63,12 +83,44 @@ namespace FreerideMTB_Store.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id_produto,Nome,Descricao,Preco,Categoria,Sub_Categoria,Stock,Peso,SKU,Marca")] tbl_Produtos tbl_Produtos)
+        [ValidateInput(false)]
+        public ActionResult Create([Bind(Include = "Id_produto,Nome,Descricao,Preco,Categoria,Sub_Categoria,Stock,Peso,SKU,Marca")] tbl_Produtos tbl_Produtos, HttpPostedFileBase[] file)
         {
             if (ModelState.IsValid)
             {
-                db.tbl_Produtos.Add(tbl_Produtos);
-                db.SaveChanges();
+                List<tbl_Imagens> listIMG=new List<tbl_Imagens>();
+                
+                foreach(HttpPostedFileBase i in file)
+                {
+                    if (i != null)
+                    {
+                        tbl_Imagens intem = new tbl_Imagens();
+                        intem.TituloImg = i.FileName;
+                        intem.Descricao = "teste";
+                        var filePath = Path.Combine((Server.MapPath("~/Imagens/")), i.FileName);
+                        intem.Caminho = "~/Imagens/" + i.FileName;
+                        i.SaveAs(filePath);
+                        listIMG.Add(intem);
+                        
+                    }
+                }
+                try
+                {
+                    tbl_Produtos.tbl_Imagens = listIMG;
+                    db.tbl_Produtos.Add(tbl_Produtos);
+                    db.SaveChanges();
+                }catch (DbEntityValidationException ee)
+                {
+                    foreach (var error in ee.EntityValidationErrors)
+                    {
+                        foreach (var thisError in error.ValidationErrors)
+                        {
+                            var errorMessage = thisError.ErrorMessage;
+                        }
+                    }
+                }
+
+               
                 return RedirectToAction("Index");
             }
 
@@ -78,6 +130,7 @@ namespace FreerideMTB_Store.Controllers
             return View(tbl_Produtos);
         }
 
+        
         // GET: tbl_Produtos/Edit/5
         public ActionResult Edit(int? id)
         {

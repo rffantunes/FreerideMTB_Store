@@ -1,95 +1,104 @@
 ﻿@model FreerideMTB_Store.Models.tbl_Produtos
 
 @{
-    ViewBag.Title = "Freeride Apagar Produto";
+    Layout = null;
 }
 
-<h2>Apagar Produto</h2>
+<!DOCTYPE html>
 
-<h3>Tem a certeza que pretende eliminar este produto?</h3>
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
-
-        <dt>
-            Descrição
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Descricao)
-        </dd>
-
-        <dt>
-            Preço
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Preco)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Stock)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Stock)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Peso)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Peso)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SKU)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SKU)
-        </dd>
-
-        <dt>
-            Categoria
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tbl_Categoria.Nome)
-        </dd>
-
-        <dt>
-            Sub-Categoria
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tbl_Sub_Categoria.Nome)
-        </dd>
-
-        <dt>
-            Marca
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tbl_Marca.Nome)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Apagar" class="btn btn-default btn-danger" /> |
-            @Html.ActionLink("Voltar", "Index")
-        </div>
-    }
-</div>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>tbl_Produtos</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Nome)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Nome)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Descricao)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Preco)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Preco)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Stock)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Stock)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Peso)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Peso)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.SKU)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.SKU)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.tbl_Categoria.Nome)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.tbl_Categoria.Nome)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.tbl_Sub_Categoria.Nome)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.tbl_Sub_Categoria.Nome)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.tbl_Marca.Nome)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.tbl_Marca.Nome)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

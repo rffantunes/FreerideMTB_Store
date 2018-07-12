@@ -6,85 +6,135 @@
 
 <h2>Details</h2>
 
-<div>
-    <h4>tbl_Produtos</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
 
-        <dt>
-            Descrição
-        </dt>
+<style>
+    div.scrollmenu {
+        background-color: #333;
+        overflow: auto;
+        white-space: nowrap;
+    }
 
-        <dd>
-            @Html.DisplayFor(model => model.Descricao)
-        </dd>
+        div.scrollmenu a {
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 2px;
+            text-decoration: none;
+        }
 
-        <dt>
-            Preço
-        </dt>
+            div.scrollmenu a:hover {
+                background-color: #777;
+            }
+</style>
 
-        <dd>
-            @Html.DisplayFor(model => model.Preco)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Stock)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Stock)
-        </dd>
+<body>
+    <div>
+        <h4>tbl_Produtos</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Nome)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Peso)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Nome)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Peso)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.tbl_Imagens)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SKU)
-        </dt>
+            <dd>
+                @*@Html.ListBox("img", new SelectList(Model.tbl_Imagens, "TituloImg", "Caminho"))*@
+                @{
+                        SelectList ListaImagensProduto = new SelectList(Model.tbl_Imagens, "Caminho","TituloImg");
+                }
 
-        <dd>
-            @Html.DisplayFor(model => model.SKU)
-        </dd>
+                <div class="scrollmenu">
+                    
+                        @foreach (var item in ListaImagensProduto)
+        {
+                
+                    <a>
+                        <img src="@item.Value" width="250px" height="140px" style="margin:20px 15px">
+                    </a>
+               
+}
+                </div>
+            </dd>
 
-        <dt>
-           Categoria
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tbl_Categoria.Nome)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Descricao)
+            </dd>
 
-        <dt>
-           Sub-Categoria
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Preco)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tbl_Sub_Categoria.Nome)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Preco)
+            </dd>
 
-        <dt>
-            Marca
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Stock)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tbl_Marca.Nome)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Stock)
+            </dd>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_produto }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            <dt>
+                @Html.DisplayNameFor(model => model.Peso)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Peso)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.SKU)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SKU)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.tbl_Categoria.Nome)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.tbl_Categoria.Nome)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.tbl_Sub_Categoria.Nome)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.tbl_Sub_Categoria.Nome)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.tbl_Marca.Nome)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.tbl_Marca.Nome)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id_produto }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

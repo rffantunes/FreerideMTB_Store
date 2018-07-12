@@ -9,6 +9,18 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+@using (Html.BeginForm("Index", "tbl_Produtos", FormMethod.Get, new { id = "TheForm" }))
+{
+
+    <p>
+        Categorias @Html.DropDownList("CatId", (new SelectList(ViewBag.ListaCategorias, "id_cat", "Nome")), "", new { onchange = "document.getElementById('TheForm').submit();" })
+
+    </p>
+
+
+}
+
 <table class="table">
     <tr>
         <th></th>
@@ -47,7 +59,7 @@
         <tr>
             <td>
 
-                
+
                 @{IEnumerable<FreerideMTB_Store.Models.tbl_Imagens> temp = ViewBag.ListaImagens;
 
                     IEnumerable<FreerideMTB_Store.Models.tbl_Imagens> Linha = temp.Where(c => c.tbl_Produtos.Any(x => x.Id_produto == item.Id_produto)).Take(1);

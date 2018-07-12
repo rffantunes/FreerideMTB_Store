@@ -19,63 +19,128 @@
 <div class="jumbotron">
     <br />
     <br />
-    <p><a href="~/Home/About" class="btn btn-primary btn-lg">Saiba mais &raquo;</a></p>
+    <br />
+    <br />
+    @*<p><a href="~/Home/About" class="btn btn-primary btn-lg">Saiba mais &raquo;</a></p>*@
 </div>
 
 <div>
-    <h1>Freeride MTB Store</h1>
+    <h3>Freeride MTB Store</h3>
     <p class="lead">A loja onde encontrará tudo o que precisa para o seu desporto favorito.</p>
 </div>
 
 <table>
     <tr>
-        <td>
-            @*Criar tabela para apresentar 2 produtos na home*@
+        <td width="500px">
+            @*Criar tabela para apresentar 2 produtos da categoria Equipamento na home*@
             <table>
-                <tr>
-                    <th>Equipamentos</th>
+                    @* Link para a categoria filtrada a partir da pagina inicial *@
+                <tr onclick="window.location.href = '/tbl_Produtos/' + '?CatId=1';" style="cursor:pointer">
+                    <th><h2>Equipamentos</h2></th>
                 </tr>
                 @foreach (var Produto in Model.ListaProdutos.Where(c => c.Categoria == 1).Take(2))
-                {
-                    <tr onclick="window.location.href = '/tbl_Produtos/Details/' + '@Produto.Id_produto';" style="cursor:pointer">
-                        <td>
-                            @{IEnumerable<FreerideMTB_Store.Models.tbl_Imagens> Linha = Model.ListaImagens.Where(c => c.tbl_Produtos.Any(x => x.Id_produto == Produto.Id_produto)).Take(1);
-                                string a = (String)Linha.Select(x => x.Caminho).FirstOrDefault();
+    {
+            <tr onclick="window.location.href = '/tbl_Produtos/Details/' + '@Produto.Id_produto';" style="cursor:pointer">
+                <td>
+                    @{IEnumerable<FreerideMTB_Store.Models.tbl_Imagens> Linha = Model.ListaImagens.Where(c => c.tbl_Produtos.Any(x => x.Id_produto == Produto.Id_produto)).Take(1);
+            string a = (String)Linha.Select(x => x.Caminho).FirstOrDefault();
 
-                                <img src="@a" width="40px" height="40px">
-                            }
-                        </td>
-                        <td>
-                            <h3>@Produto.Nome</h3>
-                            <p>@Produto.Descricao</p>
-                        </td>
-                    </tr>
-                }
+            <img src="@a" width="250px" height="140px" style="margin:20px 15px">
+                    }
+                </td>
+                <td>
+                    <h3>@Produto.Nome</h3>
+                    <p>@Produto.Descricao</p>
+                </td>
+            </tr>
+}
             </table>
-            </td>
+        </td>
 
-            @*Criar tabela para apresentar 2 produtos na home de outra categoria*@
-        <td>
+        @*Criar tabela para apresentar 2 produtos na home da categoria bicicletas*@
+        <td width="500px">
             <table>
-                <tr>
-                    <th>Bicicletas</th>
+                @* Link para a categoria filtrada a partir da pagina inicial *@
+                <tr onclick="window.location.href = '/tbl_Produtos/' + '?CatId=2';" style="cursor:pointer">
+                    <th><h2>Bicicletas</h2></th>
                 </tr>
-                @foreach (var Produto in Model.ListaProdutos.Where(c => c.Categoria == 2).Take(2))
-                {
-                    <tr onclick="window.location.href = '/tbl_Produtos/Details/' + '@Produto.Id_produto';" style="cursor:pointer">
-                        <td>
-                            @{IEnumerable<FreerideMTB_Store.Models.tbl_Imagens> Linha = Model.ListaImagens.Where(c => c.tbl_Produtos.Any(x => x.Id_produto == Produto.Id_produto)).Take(1);
-                                string a = (String)Linha.Select(x => x.Caminho).FirstOrDefault();
+                @foreach (var Item in Model.ListaProdutos.Where(c => c.Categoria == 2).Take(2))
+    {
+            <tr onclick="window.location.href = '/tbl_Produtos/Details/' + '@Item.Id_produto';" style="cursor:pointer">
+                <td>
+                    @{IEnumerable<FreerideMTB_Store.Models.tbl_Imagens> Linha = Model.ListaImagens.Where(c => c.tbl_Produtos.Any(x => x.Id_produto == Item.Id_produto)).Take(1);
+            string a = (String)Linha.Select(x => x.Caminho).FirstOrDefault();
 
-                                <img src="@a">
-                            }
-                        </td>
-                        <td>
-                            <h3>@Produto.Nome</h3>
-                            <p>@Produto.Descricao</p>
-                        </td>
-                    </tr>
-                }
+            <img src="@a" width="250px" height="140px" style="margin:20px 15px">
+                    }
+                </td>
+                <td>
+                    <h3>@Item.Nome</h3>
+                    <p>@Item.Descricao</p>
+                </td>
+            </tr>
+}
+            </table>
+        </td>
+    </tr>
+
+    @* ********************************************************************* *@
+
+    @* ********************************************************************* *@
+
+
+
+
+    <tr>
+        <td width="500px">
+            @*Criar tabela para apresentar 2 produtos na home*@
+            <table>
+                                    @* Link para a categoria filtrada a partir da pagina inicial *@
+                <tr onclick="window.location.href = '/tbl_Produtos/' + '?CatId=3';" style="cursor:pointer">
+                    <th><h2>Eletrónica</h2></th>
+                </tr>
+                @foreach (var Item in Model.ListaProdutos.Where(c => c.Categoria == 3).Take(2))
+        {
+            <tr onclick="window.location.href = '/tbl_Produtos/Details/' + '@Item.Id_produto';" style="cursor:pointer">
+                <td>
+                    @{IEnumerable<FreerideMTB_Store.Models.tbl_Imagens> Linha = Model.ListaImagens.Where(c => c.tbl_Produtos.Any(x => x.Id_produto == Item.Id_produto)).Take(1);
+                string a = (String)Linha.Select(x => x.Caminho).FirstOrDefault();
+
+                <img src="@a" width="200px" height="200px" style="margin:35px 15px">
+                    }
+                </td>
+                <td>
+                    <h3>@Item.Nome</h3>
+                    <p>@Item.Descricao</p>
+                </td>
+            </tr>
+}
+            </table>
+        </td>
+
+        @*Criar tabela para apresentar 2 produtos na home de outra categoria*@
+        <td width="500px">
+            <table>
+                @* Link para a categoria filtrada a partir da pagina inicial *@
+                <tr onclick="window.location.href = '/tbl_Produtos/' + '?CatId=5';" style="cursor:pointer">
+                    <th><h2>Suspensões</h2></th>
+                </tr>
+                @foreach (var Item in Model.ListaProdutos.Where(c => c.Categoria == 5).Take(2))
+    {
+            <tr onclick="window.location.href = '/tbl_Produtos/Details/' + '@Item.Id_produto';" style="cursor:pointer">
+                <td>
+                    @{IEnumerable<FreerideMTB_Store.Models.tbl_Imagens> Linha = Model.ListaImagens.Where(c => c.tbl_Produtos.Any(x => x.Id_produto == Item.Id_produto)).Take(1);
+            string a = (String)Linha.Select(x => x.Caminho).FirstOrDefault();
+
+            <img src="@a" height="200px" width="200px" style="margin:20px 15px">
+                    }
+                </td>
+                <td>
+                    <h3>@Item.Nome</h3>
+                    <p>@Item.Descricao</p>
+                </td>
+            </tr>
+}
             </table>
         </td>
     </tr>
