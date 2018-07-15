@@ -6,11 +6,12 @@ using System.Web.Mvc;
 
 namespace FreerideMTB_Store.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
 
         public tbl_ImagensController imgC = new tbl_ImagensController();
         public tbl_ProdutosController ProdC = new tbl_ProdutosController();
+     
 
 
 
@@ -18,6 +19,8 @@ namespace FreerideMTB_Store.Controllers
         {
             VM.ListaImagens = imgC.getImagens();
             VM.ListaProdutos = ProdC.getProdutos();
+            //VM.ListaCategorias = CatC.getCategorias();
+           // ViewBag.ListaCategoria = CatC.getCategorias();
 
             return View(VM);
         }

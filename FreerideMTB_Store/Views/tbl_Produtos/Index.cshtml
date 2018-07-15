@@ -1,16 +1,43 @@
 ﻿@model IEnumerable<FreerideMTB_Store.Models.tbl_Produtos>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "FreeRide Produtos";
 }
 
-<h2>Index</h2>
+<style>
+    .td_images {
+        position: relative;
+        padding: 1rem;
+        transition: transform .2s;
+    }
+
+        .td_images > img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            
+        }
+
+        /*.td_images:hover {
+            position: absolute;
+            left: 20%;
+            -webkit-transform: scale(1.2);
+            transform: scale(2.5);
+            max-width: 300px;
+        }*/
+</style>
+
+<h2>Produtos</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <label class="btn btn-default">
+        @Html.ActionLink("Criar novo", "Create")
+    </label>
+
+    
 </p>
 
-@using (Html.BeginForm("Index", "tbl_Produtos", FormMethod.Get, new { id = "TheForm" }))
+@*@using (Html.BeginForm("Index", "tbl_Produtos", FormMethod.Get, new { id = "TheForm" }))
 {
 
     <p>
@@ -19,7 +46,7 @@
     </p>
 
 
-}
+}*@
 
 <table class="table">
     <tr>
@@ -57,7 +84,7 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td>
+            <td class="td_images">
 
 
                 @{IEnumerable<FreerideMTB_Store.Models.tbl_Imagens> temp = ViewBag.ListaImagens;
@@ -65,7 +92,7 @@
                     IEnumerable<FreerideMTB_Store.Models.tbl_Imagens> Linha = temp.Where(c => c.tbl_Produtos.Any(x => x.Id_produto == item.Id_produto)).Take(1);
                     string a = (String)Linha.Select(x => x.Caminho).FirstOrDefault();
 
-                    <img src="@a" width="40px" height="40px">
+                    <img src="@a">
                 }
             </td>
             <td>
@@ -75,13 +102,28 @@
                 @Html.DisplayFor(modelItem => item.Descricao)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Preco)
+                @Html.DisplayFor(modelItem => item.Preco)€
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Stock)
+                @{ if (item.Stock == true)
+                    {
+                    <label class="label label-success">Em Stock</label>
+                    }
+                    else
+                    {
+                    <label class="label label-danger">Sem Stock</label>
+                    }
+                    }
+                @*@Html.DisplayFor(modelItem => item.Stock)*@
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Peso)
+
+                @if (item.Peso != null)
+    {
+                <p>@Html.DisplayFor(modelItem => item.Peso)Gr</p>
+
+}
+
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.SKU)

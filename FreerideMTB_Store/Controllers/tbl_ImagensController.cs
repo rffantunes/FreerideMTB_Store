@@ -10,7 +10,7 @@ using FreerideMTB_Store.Models;
 
 namespace FreerideMTB_Store.Controllers
 {
-    public class tbl_ImagensController : Controller
+    public class tbl_ImagensController : BaseController
     {
         private FreerideEntities db = new FreerideEntities();
 

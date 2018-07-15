@@ -89,8 +89,8 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TituloImg" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Caminho" Type="nchar" MaxLength="256" Nullable="false" />
-          <Property Name="Descricao" Type="nchar" MaxLength="256" />
+          <Property Name="Caminho" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Descricao" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="tbl_ImagensProduto">
           <Key>
@@ -612,8 +612,8 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="TituloImg" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Caminho" Type="String" Nullable="false" MaxLength="256" FixedLength="true" Unicode="true" />
-          <Property Name="Descricao" Type="String" MaxLength="256" FixedLength="true" Unicode="true" />
+          <Property Name="Caminho" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Descricao" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="tbl_Produtos" Relationship="FreerideModel.tbl_ImagensProduto" FromRole="tbl_Imagens" ToRole="tbl_Produtos" />
         </EntityType>
         <EntityType Name="tbl_Produtos">

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -10,9 +11,21 @@ using FreerideMTB_Store.Models;
 
 namespace FreerideMTB_Store.Controllers
 {
-    public class tbl_MarcaController : Controller
+    public class tbl_MarcaController : BaseController
     {
         private FreerideEntities db = new FreerideEntities();
+
+
+        //Criar uma listagem para aceder as Marcas a partir de qualquer página
+        public List<tbl_Marca> getMarcas()
+        {
+
+            ////LINQ Code
+            var lsMarcas = db.tbl_Marca;
+            return lsMarcas.ToList();
+        }
+
+
 
         // GET: tbl_Marca
         public ActionResult Index()

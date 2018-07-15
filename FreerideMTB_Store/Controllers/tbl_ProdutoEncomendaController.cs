@@ -10,9 +10,19 @@ using FreerideMTB_Store.Models;
 
 namespace FreerideMTB_Store.Controllers
 {
-    public class tbl_ProdutoEncomendaController : Controller
+    public class tbl_ProdutoEncomendaController : BaseController
     {
         private FreerideEntities db = new FreerideEntities();
+
+
+        public List<tbl_ProdutoEncomenda> getProdutoEncomenda()
+        {
+
+            ////LINQ Code
+            var lsProductsENC = db.tbl_ProdutoEncomenda.Include(c => c.tbl_Encomenda).Include(c => c.tbl_Produtos);
+            return lsProductsENC.ToList();
+        }
+
 
         // GET: tbl_ProdutoEncomenda
         public ActionResult Index()

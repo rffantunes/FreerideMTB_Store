@@ -10,9 +10,20 @@ using FreerideMTB_Store.Models;
 
 namespace FreerideMTB_Store.Controllers
 {
-    public class tbl_Sub_CategoriaController : Controller
+    public class tbl_Sub_CategoriaController : BaseController
     {
         private FreerideEntities db = new FreerideEntities();
+
+
+        public List<tbl_Sub_Categoria> getSubCat()
+        {
+
+            ////LINQ Code
+            var lsSubCat = db.tbl_Sub_Categoria.Include(c => c.tbl_Categoria);
+            return lsSubCat.ToList();
+        }
+
+
 
         // GET: tbl_Sub_Categoria
         public ActionResult Index()

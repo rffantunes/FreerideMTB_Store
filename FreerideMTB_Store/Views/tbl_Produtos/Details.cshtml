@@ -4,73 +4,67 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
-
-
+<h2>@Html.DisplayFor(model => model.Nome)</h2>
 
 <style>
-    div.scrollmenu {
-        background-color: #333;
-        overflow: auto;
-        white-space: nowrap;
+    .firstRow {
+        position: relative;
     }
-
-        div.scrollmenu a {
-            display: inline-block;
-            color: white;
-            text-align: center;
-            padding: 2px;
-            text-decoration: none;
-        }
-
-            div.scrollmenu a:hover {
-                background-color: #777;
-            }
+    .firstRow > dt {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .image_box {
+       position:relative;
+       width: 250px;
+       height: 250px;
+    }
+    .image_box > img {
+        object-fit: contain;
+        height: 100%;
+        width: 100%;
+    }
 </style>
-
-
 
 <body>
     <div>
-        <h4>tbl_Produtos</h4>
         <hr />
         <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Nome)
-            </dt>
+            <div class="firstRow">
+                <dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Nome)
-            </dd>
+                    @*@Html.DisplayNameFor(model => model.tbl_Imagens)*@
+                    Imagens
+                </dt>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.tbl_Imagens)
-            </dt>
+                <dd>
+                    @{
+                SelectList ListaImagensProduto = new SelectList(Model.tbl_Imagens, "Caminho", "TituloImg");
+                    }
 
-            <dd>
-                @*@Html.ListBox("img", new SelectList(Model.tbl_Imagens, "TituloImg", "Caminho"))*@
-                @{
-                        SelectList ListaImagensProduto = new SelectList(Model.tbl_Imagens, "Caminho","TituloImg");
-                }
+                    <div class="scrollmenu">
 
-                <div class="scrollmenu">
-                    
                         @foreach (var item in ListaImagensProduto)
-        {
-                
-                    <a>
-                        <img src="@item.Value" width="250px" height="140px" style="margin:20px 15px">
+                {
+
+                    <a class="image_box">
+                        <img src="@item.Value">
                     </a>
-               
-}
-                </div>
-            </dd>
+
+        }
+                    </div>
+                </dd>
+            </div>
+
 
             <dt>
+                <br />
                 @Html.DisplayNameFor(model => model.Descricao)
             </dt>
 
             <dd>
+                <br />
                 @Html.DisplayFor(model => model.Descricao)
             </dd>
 
@@ -79,7 +73,7 @@
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.Preco)
+                @Html.DisplayFor(model => model.Preco)€
             </dd>
 
             <dt>
@@ -87,15 +81,28 @@
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.Stock)
+                @{ if (Model.Stock == true)
+                   {
+                <label class="label label-success">Em Stock</label>
+                     }
+                    else
+                     {
+                          <label class="label label-danger">Sem Stock</label>
+                        }
+                }
+                
             </dd>
-
             <dt>
                 @Html.DisplayNameFor(model => model.Peso)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.Peso)
+
+                    @if (Model.Peso != null)
+        {
+            <p>@Html.DisplayFor(modelItem => Model.Peso)Gr</p>
+
+}
             </dd>
 
             <dt>
@@ -107,7 +114,7 @@
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.tbl_Categoria.Nome)
+                Categoria
             </dt>
 
             <dd>
@@ -115,7 +122,7 @@
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.tbl_Sub_Categoria.Nome)
+                Sub-Categoria
             </dt>
 
             <dd>
@@ -123,7 +130,7 @@
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.tbl_Marca.Nome)
+                Marca
             </dt>
 
             <dd>
@@ -132,9 +139,17 @@
 
         </dl>
     </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id_produto }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
+
+
+    <a href="@Url.Action("Edit", new { id = Model.Id_produto })" class="btn btn-default">
+        Editar
+    </a>
+
+
+    <a href="@Url.Action("Index")" class="btn btn-default">
+        Voltar
+    </a>
+
+    @*@Html.ActionLink("Voltar", "Index")*@
+
 </body>
-</html>

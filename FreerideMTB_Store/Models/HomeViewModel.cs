@@ -21,5 +21,6 @@ namespace FreerideMTB_Store.Models
     {
         public List<tbl_Produtos> ListaProdutos { get; set; }
         public List<tbl_Imagens> ListaImagens { get; set; }
+
     }
 }

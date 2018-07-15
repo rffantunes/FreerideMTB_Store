@@ -285,9 +285,9 @@ table {
   .dropup > .btn > .caret {
     border-top-color: #000 !important;
   }
-  .label {
-    border: 1px solid #000;
-  }
+   .label {
+        border: 1px solid #000;
+    }
   .table {
     border-collapse: collapse !important;
   }

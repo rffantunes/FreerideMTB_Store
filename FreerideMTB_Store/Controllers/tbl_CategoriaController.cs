@@ -10,9 +10,32 @@ using FreerideMTB_Store.Models;
 
 namespace FreerideMTB_Store.Controllers
 {
+
+    //Este n pode herdar do BaseController para nao entrar num loop recursivo
     public class tbl_CategoriaController : Controller
     {
         private FreerideEntities db = new FreerideEntities();
+        
+
+        //Criar uma listagem para aceder as categorias a partir de qualquer página
+        public List<tbl_Categoria> getCategorias()
+        {
+
+            ////LINQ Code
+            var lsCat = db.tbl_Categoria;
+            return lsCat.ToList();
+        }
+
+        //Criar uma listagem para aceder as Subcategorias a partir de qualquer página
+        //public List<tbl_Categoria> getSubCategorias()
+        //{
+
+        //    ////LINQ Code
+        //    var lsSubCat = db.tbl_Sub_Categoria;
+        //    return lsSubCat.ToList();
+        //}
+
+
 
         // GET: tbl_Categoria
         public ActionResult Index()

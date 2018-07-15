@@ -10,18 +10,11 @@
 namespace FreerideMTB_Store.Models
 {
     using System;
-    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
     public partial class FreerideEntities : DbContext
     {
-
-        public List<tbl_Imagens> ListaImagens { get; set; }
-
-
-
-
         public FreerideEntities()
             : base("name=FreerideEntities")
         {
@@ -44,6 +37,5 @@ namespace FreerideMTB_Store.Models
         public virtual DbSet<tbl_Imagens> tbl_Imagens { get; set; }
         public virtual DbSet<tbl_Produtos> tbl_Produtos { get; set; }
         public virtual DbSet<tbl_Marca> tbl_Marca { get; set; }
-
     }
 }

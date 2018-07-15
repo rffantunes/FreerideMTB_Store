@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
@@ -9,6 +9,48 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
+    <style>
+        .dropbtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 400px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                color: black;
+                padding: 16px 16px;
+                text-decoration: none;
+                display: inline-block;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #ddd;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }
+    </style>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -23,7 +65,7 @@
 
 
                 @*Icone do menu*@
-                <a href="@Url.Action("Index","Home")" class="logoclass">
+                <a href="@Url.Action("Index", "Home")" class="logoclass">
                     <img src="@Url.Content("~/Imagens/icon_btt.png")" id="logo" />
                     Freeride
                 </a>
@@ -35,7 +77,18 @@
                     <li>@Html.ActionLink("Sobre", "About", "Home")</li>
                     <li>@Html.ActionLink("Contato", "Contact", "Home")</li>
                     @* Replicar linha (Nome a aparecer, Nome View, Nome Pasta View) *@
-                    <li>@Html.ActionLink("Produtos", "Index", "tbl_Produtos")</li>
+                    @*<li>@Html.ActionLink("Produtos", "Index", "tbl_Produtos")</li>*@
+                    <li><div class="dropdown">
+                            <button class="dropbtn">@Html.ActionLink("Produtos", "Index", "tbl_Produtos")</button>
+                             <div class="dropdown-content">
+                                 @{foreach (FreerideMTB_Store.Models.tbl_Categoria cat in ViewBag.ListaCategoria)
+                                      {
+                                           <a href="/tbl_Produtos/?CatId=@cat.Id_cat">@cat.Nome</a>
+                                     }
+                                 }
+
+                             </div>
+                        </div></li>
 
                 </ul>
                 @Html.Partial("_LoginPartial")

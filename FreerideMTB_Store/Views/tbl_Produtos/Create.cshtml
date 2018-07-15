@@ -3,13 +3,22 @@
 @{
     ViewBag.Title = "Freeride Inserir produto";
 }
+
+<style>
+    .alinha{
+        align-items:center;
+        margin-left:15rem !important;
+    }    
+</style>
+
 <body>
     @using (Html.BeginForm("Create", "tbl_Produtos", FormMethod.Post,new { enctype = "multipart/form-data"}))
     {
         @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>tbl_Produtos</h4>
+        <br />
+        <h4>Criar Novo Produto</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -52,16 +61,26 @@
             </div>
         </div>
 
+
+
+
+
         <div class="form-group">
             @Html.LabelFor(model => model.Stock, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Stock)
+                <div>
+
+                    <label class="label label-success" style="font-size: small;">
+                        Em Stock:@Html.RadioButton("stock", "true", new { @checked = true })
+                    </label>
+
+                    <label class="label2 label label-danger">
+                        Sem Stock:@Html.RadioButton("stock", "false")
+                    </label>
                     @Html.ValidationMessageFor(model => model.Stock, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.Peso, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -93,17 +112,27 @@
             </div>
         </div>
 
+
+
+
+
+
+
+
+
+
+
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Confirmar" class="btn btn-default btn-success" />
+                @Html.ActionLink("Cancelar", "Index")
             </div>
         </div>
     </div>
     }
 
 
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
+    
 </body>
 </html>

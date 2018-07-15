@@ -192,6 +192,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\tbl_CategoriaController.cs" />
@@ -296,10 +297,15 @@
     <Content Include="Imagens\Meias_Compressao.jpg" />
     <Content Include="Imagens\RockShox_Rs1.jpg" />
     <Content Include="Imagens\RockShox_Sid.jpg" />
+    <Content Include="Imagens\Shimano_XTR.jpg" />
     <Content Include="Imagens\Sigma_Rox_12.jpg" />
     <Content Include="Imagens\Specialized_Enduro.jpg" />
     <Content Include="Imagens\Specialized_Epic.jpg" />
     <Content Include="Imagens\Specialized_Tarmac.jpg" />
+    <Content Include="Imagens\SRAM_Eagle.jpg" />
+    <Content Include="Imagens\SRAM_Eagle_1.jpg" />
+    <Content Include="Imagens\SRAM_Eagle_2.jpg" />
+    <Content Include="Imagens\SRAM_Eagle_3.jpg" />
     <Content Include="Imagens\Trek 99Superfly.png" />
     <Content Include="Models\FreerideDBModel.edmx.diagram">
       <DependentUpon>FreerideDBModel.edmx</DependentUpon>
@@ -398,8 +404,8 @@
     <Content Include="Views\tbl_Produtos\Create.cshtml" />
     <Content Include="Views\tbl_Produtos\Delete.cshtml" />
     <Content Include="Views\tbl_Produtos\Details.cshtml" />
-    <Content Include="Views\tbl_Produtos\Edit.cshtml" />
     <Content Include="Views\tbl_Produtos\Index.cshtml" />
+    <Content Include="Views\tbl_Produtos\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
