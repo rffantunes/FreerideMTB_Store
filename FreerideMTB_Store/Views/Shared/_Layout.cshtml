@@ -57,6 +57,23 @@
         .navbar-right > li > a{
             font-size: 1.2rem !important;
         }
+
+        .search{
+            width:300px;
+            padding-top:15px;
+            padding-left:15px;
+        }
+
+        input[type=text] {
+            width: 150px;
+            -webkit-transition: width 0.4s ease-in-out;
+            transition: width 0.4s ease-in-out;
+        }
+
+            /* When the input field gets focus, change its width to 100% */
+            input[type=text]:focus {
+                width: 85%;
+            }
     </style>
 </head>
 <body>
@@ -85,19 +102,49 @@
                     <li>@Html.ActionLink("Contato", "Contact", "Home")</li>
                     @* Replicar linha (Nome a aparecer, Nome View, Nome Pasta View) *@
                     @*<li>@Html.ActionLink("Produtos", "Index", "tbl_Produtos")</li>*@
-                    <li><div class="dropdown dropbtn"> Produtos
-                             <div class="dropdown-content">
-                                 @Html.ActionLink("Todos", "Index", "tbl_Produtos")
-                                 @{foreach (FreerideMTB_Store.Models.tbl_Categoria cat in ViewBag.ListaCategoria)
-                                      {
-                                           <a href="/tbl_Produtos/?CatId=@cat.Id_cat">@cat.Nome</a>
-                                     }
-                                 }
+                    <li>
+                        <div class="dropdown dropbtn">
+                            Produtos
+                            <div class="dropdown-content">
+                                @Html.ActionLink("Todos", "Index", "tbl_Produtos")
+                                @{foreach (FreerideMTB_Store.Models.tbl_Categoria cat in ViewBag.ListaCategoria)
+                {
+                    <a href="/tbl_Produtos/?CatId=@cat.Id_cat">@cat.Nome</a>
+}
+                                }
 
-                             </div>
-                        </div></li>
-
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="search">
+                            @using (Html.BeginForm("Index", "tbl_Produtos", FormMethod.Get))
+    {
+                        <input type="text" id="name" placeholder="Pesquisar">
+                        @*@Html.TextBox("search")   ⚲ *@
+                        <input type="submit" value="⌕" />
+}
+                        </div>
+                    </li>
                 </ul>
+
+
+
+                @*<form asp-controller="tbl_Produtos" asp-action="Index" method="get">
+                    <p>
+                        <input type="text" name="search">
+                        <input type="submit" value="Pesquisar" />
+                    </p>
+                </form>*@
+
+
+
+
+               
+
+
+
+
                 @Html.Partial("_LoginPartial")
             </div>
             @*<div class="navbar-collapse collapse">

@@ -8,7 +8,32 @@
     .alinha{
         align-items:center;
         margin-left:15rem !important;
-    }    
+    }
+
+    .form-group > .col-md-10 > input {
+        max-width: 100%;
+    }
+
+    .form-group > .col-md-10 > textarea {
+        min-width: 100%;
+        min-height: 100px;
+        padding: 6px 12px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+    }
+
+    .stockLabels {
+        position: relative;
+        padding: 5px 25px 5px 5px;
+        font-size: small;
+        margin-right: 0.5rem;
+    }
+
+    .stockLabels > #stock {
+        position: absolute;
+        right: 5px;
+        top: 2px;
+    }
 </style>
 
 <body>
@@ -30,15 +55,15 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Descricao, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Descricao, "Descrição", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Preco, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Preco, "Preço", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Preco, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Preco, "", new { @class = "text-danger" })
@@ -54,7 +79,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Sub_Categoria, "Sub_Categoria", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Sub_Categoria, "Sub-Categoria", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("Sub_Categoria", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Sub_Categoria, "", new { @class = "text-danger" })
@@ -70,11 +95,11 @@
             <div class="col-md-10">
                 <div>
 
-                    <label class="label label-success" style="font-size: small;">
+                    <label class="label label-success stockLabels">
                         Em Stock:@Html.RadioButton("stock", "true", new { @checked = true })
                     </label>
 
-                    <label class="label2 label label-danger">
+                    <label class="label2 label label-danger stockLabels">
                         Sem Stock:@Html.RadioButton("stock", "false")
                     </label>
                     @Html.ValidationMessageFor(model => model.Stock, "", new { @class = "text-danger" })
