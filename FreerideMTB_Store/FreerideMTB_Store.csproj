@@ -293,7 +293,11 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>FreerideDBModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="Imagens\banner_home.jpg" />
+    <Content Include="Imagens\banner_home2.jpg" />
+    <Content Include="Imagens\banner_home3.jpg" />
     <Content Include="Imagens\Garmin_1030.jpg" />
+    <Content Include="Imagens\HP_Aspot_3_MegaEssentials_WK27_NA_pt.jpg" />
     <Content Include="Imagens\Meias_Compressao.jpg" />
     <Content Include="Imagens\RockShox_Rs1.jpg" />
     <Content Include="Imagens\RockShox_Sid.jpg" />
