@@ -35,6 +35,13 @@ namespace FreerideMTB_Store.Controllers
         //    return lsSubCat.ToList();
         //}
 
+
+
+
+
+
+            //metodo que permite criar a dropdown das categorias para as views da categoria (por implementar)
+            //OnactionExecution é executado antes de qualquer action(Index,Edit,Create,...)
             override
         protected void OnActionExecuting(ActionExecutingContext filterContext)
         {

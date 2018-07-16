@@ -11,7 +11,8 @@ namespace FreerideMTB_Store.Controllers
         override
         protected void OnActionExecuting(ActionExecutingContext filterContext)
         {
-
+            //para todos os controllers acederem as categorias do menu (Herança)
+            //excepto controller_Categoria    (Evitar StackOverflow)
             ViewBag.ListaCategoria = CatC.getCategorias();
             //ViewBag.ListaMarcas = MarcaC.getMarcas();
         }

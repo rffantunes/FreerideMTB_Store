@@ -102,39 +102,33 @@ namespace FreerideMTB_Store.Controllers
                 //tbl_Produtos.tbl_Imagens = new List<tbl_Imagens>();
 
             
-
+                //Correr todos os ficheiros disponiveis no formulario
                 foreach (HttpPostedFileBase i in file)
                 {
+                    //se existirem ficheiros 
                     if (i != null)
                     {
+                        //preparar um novo registo do tipo tbl_Imagens
                         tbl_Imagens intem = new tbl_Imagens();
+                        //especificacao de atributos
                         intem.TituloImg = i.FileName;
                         intem.Descricao = "teste";
+                        //criar um caminho com o nome do ficheiro concatenado
                         var filePath = Path.Combine((Server.MapPath("~/Imagens/")), i.FileName);
+                        //especificacao do caminho
                         intem.Caminho = "/Imagens/" + i.FileName;
+                        //guardar o ficheiro no caminho
                         i.SaveAs(filePath);
+                        //criar uma nova ligacao de muitos para muitos(tbl.Imagens.ADD)
                         tbl_Produtos.tbl_Imagens.Add(intem);
                         //listIMG.Add(intem);
                         
                     }
                 }
-                //try
-                //{
-                //    tbl_Produtos.tbl_Imagens = listIMG;
+               
                 db.tbl_Produtos.Add(tbl_Produtos);
                 db.SaveChanges();
-                //}
-                //catch (DbEntityValidationException ee)
-                //{
-                //    foreach (var error in ee.EntityValidationErrors)
-                //    {
-                //        foreach (var thisError in error.ValidationErrors)
-                //        {
-                //            var errorMessage = thisError.ErrorMessage;
-                //        }
-                //    }
-                //}
-
+              
 
                 return RedirectToAction("Index");
             }
@@ -174,25 +168,35 @@ namespace FreerideMTB_Store.Controllers
         {
             if (ModelState.IsValid)
             {
+                //recolha das check boxs ativas
                 var checks = collection.GetValues("check");
 
+                //guardar referencia da base de dados do produto que estamos a trabalhar
                 var original = db.tbl_Produtos.Include(c => c.tbl_Imagens).SingleOrDefault(c => c.Id_produto == tbl_Produtos.Id_produto);
 
+                //Lista de imagens para extrair (Questão de muitos para muitos)
                 List<tbl_Imagens> listToDel = new List<tbl_Imagens>(original.tbl_Imagens);
 
+                //Limpar a navegacao da chave estrangeira
                 original.tbl_Imagens.Clear();
                 tbl_Produtos.tbl_Imagens.Clear();
 
+
+                //para cada checkbox ativa 
                 foreach (var idd in checks)
                 {
+                    //retiramos da lista para eliminar
                     listToDel.Remove(db.tbl_Imagens.Find(Int64.Parse(idd)));
                     original.tbl_Imagens.Add(db.tbl_Imagens.Find(Int64.Parse(idd)));
                     // tbl_Produtos.tbl_Imagens.Add(db.tbl_Imagens.Find(Int64.Parse(idd)));
+
+
+                    //criar uma nova navegacao de chave estrangeira para as imagens do formulario
                     db.tbl_Imagens.Attach(db.tbl_Imagens.Find(Int64.Parse(idd)));
                 }
                 
 
-
+                //para cada ficheiro carregado
                 foreach (HttpPostedFileBase i in file)
                 {
                     if (i != null)
@@ -210,15 +214,27 @@ namespace FreerideMTB_Store.Controllers
                     }
                 }
 
+                //guardar referencia do produto a editar
+
                 var prod = db.tbl_Produtos.Find(tbl_Produtos.Id_produto);
+
+                // fazer uma tentativa de update ao produto da referencia
                 if (TryUpdateModel(prod))
                 {
                     //original = tbl_Produtos;
                     //db.Entry(tbl_Produtos).State = EntityState.Modified;
+
+
+                    //atualizar a base de dados
                     db.SaveChanges();
 
                     return RedirectToAction("Index");
                 }
+
+
+
+
+
 
 
                 //foreach (tbl_Imagens img in listToDel)
@@ -241,6 +257,9 @@ namespace FreerideMTB_Store.Controllers
 
                 //db.Entry(tbl_Produtos).State = EntityState.Unchanged;
                 //db.tbl_Imagens.RemoveRange(listToDel);
+
+
+
                
             }
             ViewBag.Categoria = new SelectList(db.tbl_Categoria, "Id_cat", "Nome", tbl_Produtos.Categoria);
@@ -271,6 +290,7 @@ namespace FreerideMTB_Store.Controllers
         {
             tbl_Produtos tbl_Produtos = db.tbl_Produtos.Find(id);
             var listaImagens = tbl_Produtos.tbl_Imagens;
+            //Duvida em relacao ao funcionamento de muitos para muitos (apagar ou nao img da DB)(2 produtos podem usar a mesma img)
           //  db.tbl_Imagens.RemoveRange(listaImagens);
             db.tbl_Produtos.Remove(tbl_Produtos);
             db.SaveChanges();

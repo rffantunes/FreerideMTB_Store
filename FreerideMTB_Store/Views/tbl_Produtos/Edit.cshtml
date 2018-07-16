@@ -67,7 +67,7 @@
 
 
 
-
+        @*//adquirir as imagens do produto *@ 
 
         @{
         SelectList ListaImagensProduto = new SelectList(Model.tbl_Imagens, "Caminho", "Id");
@@ -75,14 +75,15 @@
 
         <div class="scrollmenu">
 
+            @*//desenhar as imagens do produto com checkbox *@
             @foreach (var item in ListaImagensProduto)
-        {
+    {
 
-            <a>
-                <input type="checkbox" value="@item.Text" name="check" checked />
-                <img src="@item.Value" width="250px" height="140px" style="margin:20px 15px">
-            </a>
-    }
+        <a>
+            <input type="checkbox" value="@item.Text" name="check" checked />
+            <img src="@item.Value" width="250px" height="140px" style="margin:20px 15px">
+        </a>
+}
         </div>
         <br />
         <div>

@@ -8,7 +8,7 @@ namespace FreerideMTB_Store.Controllers
 {
     public class HomeController : BaseController
     {
-
+        //tornar as listagens publicas para poderem ser acedidas na view do Home(Index)
         public tbl_ImagensController imgC = new tbl_ImagensController();
         public tbl_ProdutosController ProdC = new tbl_ProdutosController();
      
@@ -17,6 +17,7 @@ namespace FreerideMTB_Store.Controllers
 
         public ActionResult Index(FreerideMTB_Store.Models.HomeViewModel VM)
         {
+            //Popular as listagens e entregar na view
             VM.ListaImagens = imgC.getImagens();
             VM.ListaProdutos = ProdC.getProdutos();
             //VM.ListaCategorias = CatC.getCategorias();
