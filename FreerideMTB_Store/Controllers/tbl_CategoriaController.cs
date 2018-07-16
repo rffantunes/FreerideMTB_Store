@@ -35,6 +35,19 @@ namespace FreerideMTB_Store.Controllers
         //    return lsSubCat.ToList();
         //}
 
+            override
+        protected void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+
+            ViewBag.ListaCategoria = getCategorias();
+            //ViewBag.ListaMarcas = MarcaC.getMarcas();
+        }
+
+
+
+
+
+
 
 
         // GET: tbl_Categoria

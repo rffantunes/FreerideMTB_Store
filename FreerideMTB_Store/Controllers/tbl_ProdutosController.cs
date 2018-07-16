@@ -181,12 +181,16 @@ namespace FreerideMTB_Store.Controllers
                 List<tbl_Imagens> listToDel = new List<tbl_Imagens>(original.tbl_Imagens);
 
                 original.tbl_Imagens.Clear();
+                tbl_Produtos.tbl_Imagens.Clear();
 
                 foreach (var idd in checks)
                 {
                     listToDel.Remove(db.tbl_Imagens.Find(Int64.Parse(idd)));
                     original.tbl_Imagens.Add(db.tbl_Imagens.Find(Int64.Parse(idd)));
+                    // tbl_Produtos.tbl_Imagens.Add(db.tbl_Imagens.Find(Int64.Parse(idd)));
+                    db.tbl_Imagens.Attach(db.tbl_Imagens.Find(Int64.Parse(idd)));
                 }
+                
 
 
                 foreach (HttpPostedFileBase i in file)
@@ -200,9 +204,20 @@ namespace FreerideMTB_Store.Controllers
                         intem.Caminho = "/Imagens/" + i.FileName;
                         i.SaveAs(filePath);
                         original.tbl_Imagens.Add(intem);
+                        tbl_Produtos.tbl_Imagens.Add(intem);
                         //listIMG.Add(intem);
 
                     }
+                }
+
+                var prod = db.tbl_Produtos.Find(tbl_Produtos.Id_produto);
+                if (TryUpdateModel(prod))
+                {
+                    //original = tbl_Produtos;
+                    //db.Entry(tbl_Produtos).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
                 }
 
 
@@ -221,15 +236,12 @@ namespace FreerideMTB_Store.Controllers
                 //}
 
 
-                
+
 
 
                 //db.Entry(tbl_Produtos).State = EntityState.Unchanged;
                 //db.tbl_Imagens.RemoveRange(listToDel);
-
-                db.SaveChanges();
-                
-                return RedirectToAction("Index");
+               
             }
             ViewBag.Categoria = new SelectList(db.tbl_Categoria, "Id_cat", "Nome", tbl_Produtos.Categoria);
             ViewBag.Sub_Categoria = new SelectList(db.tbl_Sub_Categoria, "Id_sub_cat", "Nome", tbl_Produtos.Sub_Categoria);
@@ -259,7 +271,7 @@ namespace FreerideMTB_Store.Controllers
         {
             tbl_Produtos tbl_Produtos = db.tbl_Produtos.Find(id);
             var listaImagens = tbl_Produtos.tbl_Imagens;
-            db.tbl_Imagens.RemoveRange(listaImagens);
+          //  db.tbl_Imagens.RemoveRange(listaImagens);
             db.tbl_Produtos.Remove(tbl_Produtos);
             db.SaveChanges();
             return RedirectToAction("Index");
