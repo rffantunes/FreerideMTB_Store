@@ -12,22 +12,15 @@
     <style>
         .dropbtn {
             background-color: transparent;
-            color: white;
-            padding: 11px;
+            color: #999;
+            padding: 15px;
             border: none;
+            font-size: 20px;
+            line-height: 20px;
         }
 
         .dropbtn:hover {
-            background-color: transparent;
-        }
-
-        .dropbtn:hover > a {
             color: white;
-        }
-
-        .dropbtn > a {
-            color: #999;
-            font-size: 20px;
         }
 
         .dropdown {
@@ -39,10 +32,10 @@
             display: none;
             position: absolute;
             background-color: #f1f1f1;
-            min-width: 400px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
             transform: translateX(-40%);
+            top: 100%;
         }
 
             .dropdown-content a {
@@ -50,6 +43,7 @@
                 padding: 16px 16px;
                 text-decoration: none;
                 display: inline-block;
+                font-size: 1.5rem;
             }
 
                 .dropdown-content a:hover {
@@ -91,9 +85,9 @@
                     <li>@Html.ActionLink("Contato", "Contact", "Home")</li>
                     @* Replicar linha (Nome a aparecer, Nome View, Nome Pasta View) *@
                     @*<li>@Html.ActionLink("Produtos", "Index", "tbl_Produtos")</li>*@
-                    <li><div class="dropdown">
-                            <button class="dropbtn">@Html.ActionLink("Produtos", "Index", "tbl_Produtos")</button>
+                    <li><div class="dropdown dropbtn"> Produtos
                              <div class="dropdown-content">
+                                 @Html.ActionLink("Todos", "Index", "tbl_Produtos")
                                  @{foreach (FreerideMTB_Store.Models.tbl_Categoria cat in ViewBag.ListaCategoria)
                                       {
                                            <a href="/tbl_Produtos/?CatId=@cat.Id_cat">@cat.Nome</a>

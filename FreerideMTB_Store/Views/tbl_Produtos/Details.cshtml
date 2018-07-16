@@ -15,7 +15,7 @@
         top: 50%;
         transform: translateY(-50%);
     }
-    .image_box {
+    /*.image_box {
        position:relative;
        width: 250px;
        height: 250px;
@@ -24,6 +24,18 @@
         object-fit: contain;
         height: 100%;
         width: 100%;
+    }*/
+    .scrollmenu {
+        display: flex;
+        overflow-x: auto;
+        height: 30vh;
+    }
+
+    .scrollmenu > img {
+        height: 100%;
+        width: auto;
+        object-fit: contain;
+        margin: 0 20px;
     }
 </style>
 
@@ -48,9 +60,10 @@
                         @foreach (var item in ListaImagensProduto)
                 {
 
-                    <a class="image_box">
-                        <img src="@item.Value">
-                    </a>
+                    <img src="@item.Value">
+                    @*<a class="image_box">
+                        
+                    </a>*@
 
         }
                     </div>

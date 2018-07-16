@@ -11,6 +11,25 @@
         font-size: small;
         background-color: brown;
     }
+    .scrollmenu {
+        position: relative;
+        max-height: 30vh;
+        display: flex;
+        overflow-x: auto;
+    }
+    .scrollmenu > a {
+        position: relative;
+        height: 100%;
+        width: auto;
+    }
+    .scrollmenu > a > img {
+        object-fit: contain;
+    }
+    .scrollmenu > a > input[type="checkbox"] {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 </style>
 
 <body>
