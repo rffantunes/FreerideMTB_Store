@@ -78,6 +78,7 @@ namespace FreerideMTB_Store.Controllers
             return View(tbl_Produtos);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: tbl_Produtos/Create
         public ActionResult Create()
         {
@@ -139,7 +140,7 @@ namespace FreerideMTB_Store.Controllers
             return View(tbl_Produtos);
         }
 
-        
+        [Authorize(Roles = "Admin")]
         // GET: tbl_Produtos/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -183,17 +184,20 @@ namespace FreerideMTB_Store.Controllers
 
 
                 //para cada checkbox ativa 
-                foreach (var idd in checks)
-                {
-                    //retiramos da lista para eliminar
-                    listToDel.Remove(db.tbl_Imagens.Find(Int64.Parse(idd)));
-                    original.tbl_Imagens.Add(db.tbl_Imagens.Find(Int64.Parse(idd)));
-                    // tbl_Produtos.tbl_Imagens.Add(db.tbl_Imagens.Find(Int64.Parse(idd)));
+                if (checks!=null) {
+                    foreach (var idd in checks)
+                    {
+                        //retiramos da lista para eliminar
+                        listToDel.Remove(db.tbl_Imagens.Find(Int64.Parse(idd)));
+                        original.tbl_Imagens.Add(db.tbl_Imagens.Find(Int64.Parse(idd)));
+                        // tbl_Produtos.tbl_Imagens.Add(db.tbl_Imagens.Find(Int64.Parse(idd)));
 
 
-                    //criar uma nova navegacao de chave estrangeira para as imagens do formulario
-                    db.tbl_Imagens.Attach(db.tbl_Imagens.Find(Int64.Parse(idd)));
+                        //criar uma nova navegacao de chave estrangeira para as imagens do formulario
+                        db.tbl_Imagens.Attach(db.tbl_Imagens.Find(Int64.Parse(idd)));
+                    }
                 }
+                
                 
 
                 //para cada ficheiro carregado
@@ -267,7 +271,7 @@ namespace FreerideMTB_Store.Controllers
             ViewBag.Marca = new SelectList(db.tbl_Marca, "Id", "Nome", tbl_Produtos.Marca);
             return View(tbl_Produtos);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: tbl_Produtos/Delete/5
         public ActionResult Delete(int? id)
         {

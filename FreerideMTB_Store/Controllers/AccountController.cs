@@ -13,14 +13,13 @@ using FreerideMTB_Store.Models;
 namespace FreerideMTB_Store.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        public AccountController()
-        {
-        }
+        public AccountController() 
+        { }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {

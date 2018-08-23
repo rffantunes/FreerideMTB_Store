@@ -11,7 +11,9 @@ namespace FreerideMTB_Store.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
+
     public partial class tbl_Produtos
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,14 +24,24 @@ namespace FreerideMTB_Store.Models
         }
     
         public int Id_produto { get; set; }
+        [RegularExpression(@"[\w\s'""()-.,:ªº]*")]
+        [Required]
         public string Nome { get; set; }
+        [AllowHtml]
         public string Descricao { get; set; }
+        [Range(0, 10000)]
+        [DataType(DataType.Currency)]
         public decimal Preco { get; set; }
         public int Categoria { get; set; }
+        [Required]
         public Nullable<int> Sub_Categoria { get; set; }
+        [Required]
         public Nullable<bool> Stock { get; set; }
+        [Range(0, 500)]
+        [Required]
         public Nullable<double> Peso { get; set; }
         public string SKU { get; set; }
+        [Required]
         public Nullable<int> Marca { get; set; }
     
         public virtual tbl_Categoria tbl_Categoria { get; set; }

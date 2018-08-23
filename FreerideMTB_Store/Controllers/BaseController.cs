@@ -17,6 +17,12 @@ namespace FreerideMTB_Store.Controllers
             //ViewBag.ListaMarcas = MarcaC.getMarcas();
         }
 
+
+
+        
+
+
+
         public tbl_CategoriaController CatC = new tbl_CategoriaController();
         //public tbl_Sub_CategoriaController SubCatC = new tbl_Sub_CategoriaController();
         //public tbl_MarcaController MarcaC = new tbl_MarcaController();

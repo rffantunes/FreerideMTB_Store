@@ -1,13 +1,27 @@
 ﻿@model IEnumerable<FreerideMTB_Store.Models.tbl_Categoria>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "FreeRide Categorias";
 }
+<style>
+    .table tr:hover:first-child {
+        background: initial;
+        cursor: default;
+    }
 
-<h2>Index</h2>
+    .table tr:hover {
+        background: #f1f1f1;
+        cursor: pointer;
+    }
+</style>
+<h2>Categorias</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <label class="btn btn-default">
+        @Html.ActionLink("Criar nova", "Create")
+    </label>
+
+
 </p>
 <table class="table">
     <tr>
@@ -21,7 +35,7 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
+    <tr onclick="location.href='@Url.Action("Details", new { id = item.Id_cat })'">
         <td>
             @Html.DisplayFor(modelItem => item.Nome)
         </td>
@@ -29,9 +43,9 @@
             @Html.DisplayFor(modelItem => item.Descricao)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id_cat }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id_cat }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id_cat })
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id_cat }) |
+            @Html.ActionLink("Detalhes", "Details", new { id=item.Id_cat }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.Id_cat })
         </td>
     </tr>
 }

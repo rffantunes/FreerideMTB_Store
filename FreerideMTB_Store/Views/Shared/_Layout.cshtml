@@ -108,23 +108,32 @@
                             <div class="dropdown-content">
                                 @Html.ActionLink("Todos", "Index", "tbl_Produtos")
                                 @{foreach (FreerideMTB_Store.Models.tbl_Categoria cat in ViewBag.ListaCategoria)
-                {
-                    <a href="/tbl_Produtos/?CatId=@cat.Id_cat">@cat.Nome</a>
-}
+                    {
+                        <a href="/tbl_Produtos/?CatId=@cat.Id_cat">@cat.Nome</a>
+    }
                                 }
 
                             </div>
                         </div>
                     </li>
                     <li>
+                        @if (User.IsInRole("Admin"))
+        {
+
+                @Html.ActionLink("Admin", "Index", "Roles")
+}
+                    </li>
+                    <li>
                         <div class="search">
                             @using (Html.BeginForm("Index", "tbl_Produtos", FormMethod.Get))
-    {
-                        <input type="text" id="name" placeholder="Pesquisar">
-                        <input type="submit" value="⌕" />
+            {
+                <input type="text" id="name" name="search" placeholder="Pesquisar">
+                <input type="submit" value="⌕" />
 }
                         </div>
                     </li>
+
+
                 </ul>
 
 

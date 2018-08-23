@@ -1,4 +1,7 @@
-﻿using Microsoft.Owin;
+﻿using FreerideMTB_Store.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin;
 using Owin;
 
 [assembly: OwinStartupAttribute(typeof(FreerideMTB_Store.Startup))]
