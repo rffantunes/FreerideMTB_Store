@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link rel="shortcut icon" type="image/x-icon" href="~/Imagens/icon_btt.png" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <style>
+        .dropbtn {
+            background-color: transparent;
+            color: #999;
+            padding: 15px;
+            border: none;
+            font-size: 20px;
+            line-height: 20px;
+        }
+
+        .dropbtn:hover {
+            color: white;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            transform: translateX(-40%);
+            top: 100%;
+        }
+
+            .dropdown-content a {
+                color: black;
+                padding: 16px 16px;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 1.5rem;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #ddd;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: flex; 
+        }
+
+        .navbar-right > li > a{
+            font-size: 1.2rem !important;
+        }
+
+        .search{
+            width:300px;
+            padding-top:15px;
+            padding-left:15px;
+        }
+
+        input[type=text] {
+            width: 150px;
+            -webkit-transition: width 0.4s ease-in-out;
+            transition: width 0.4s ease-in-out;
+        }
+
+            /* When the input field gets focus, change its width to 100% */
+            input[type=text]:focus {
+                width: 85%;
+            }
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+
+                @*Icone do menu*@
+                <a href="@Url.Action("Index", "Home")" class="logoclass">
+                    <img src="@Url.Content("~/Imagens/icon_btt.png")" id="logo" />
+                    Freeride
+                </a>
+
+
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Sobre", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contato", "Contact", "Home")</li>
+                    @* Replicar linha (Nome a aparecer, Nome View, Nome Pasta View) *@
+                    @*<li>@Html.ActionLink("Produtos", "Index", "tbl_Produtos")</li>*@
+                    <li>
+                        <div class="dropdown dropbtn">
+                            Produtos
+                            <div class="dropdown-content">
+                                @Html.ActionLink("Todos", "Index", "tbl_Produtos")
+                                @{foreach (FreerideMTB_Store.Models.tbl_Categoria cat in ViewBag.ListaCategoria)
+                    {
+                        <a href="/tbl_Produtos/?CatId=@cat.Id_cat">@cat.Nome</a>
+    }
+                                }
+
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        @if (User.IsInRole("Admin"))
+        {
+
+                @Html.ActionLink("Admin", "Index", "Roles")
+}
+                    </li>
+                    <li>
+                        <div class="search">
+                            @using (Html.BeginForm("Index", "tbl_Produtos", FormMethod.Get))
+            {
+                <input type="text" id="name" name="search" placeholder="Pesquisar">
+                <input type="submit" value="⌕" />
+}
+                        </div>
+                    </li>
+
+
+                </ul>
+
+
+
+                @*<form asp-controller="tbl_Produtos" asp-action="Index" method="get">
+                    <p>
+                        <input type="text" name="search">
+                        <input type="submit" value="Pesquisar" />
+                    </p>
+                </form>*@
+
+
+
+
+               
+
+
+
+
+                @Html.Partial("_LoginPartial")
+            </div>
+            @*<div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                     Replicar linha (Nome a aparecer, Nome View, Nome Pasta View) 
+                    <li>@Html.ActionLink("Produtos", "Index", "tbl_Produtos")</li>
+
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>*@
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

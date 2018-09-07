@@ -1,0 +1,170 @@
+﻿@model IEnumerable<FreerideMTB_Store.Models.tbl_Produtos>
+
+@{
+    ViewBag.Title = "FreeRide Produtos";
+}
+
+<style>
+    .td_images {
+        position: relative;
+        padding: 1rem;
+        transition: transform .2s;
+    }
+
+        .td_images > img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+    /*.td_images:hover {
+            position: absolute;
+            left: 20%;
+            -webkit-transform: scale(1.2);
+            transform: scale(2.5);
+            max-width: 300px;
+        }*/
+    .table tr:hover:first-child {
+        background: initial;
+        cursor: default;
+    }
+
+    .table tr:hover {
+        background: #f1f1f1;
+        cursor: pointer;
+    }
+</style>
+
+<h2>Produtos</h2>
+
+
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        <label class="btn btn-default">
+            @Html.ActionLink("Criar novo", "Create")
+        </label>
+
+
+    </p>
+}
+
+
+@*@using (Html.BeginForm("Index", "tbl_Produtos", FormMethod.Get, new { id = "TheForm" }))
+    {
+
+        <p>
+            Categorias @Html.DropDownList("CatId", (new SelectList(ViewBag.ListaCategorias, "id_cat", "Nome")), "", new { onchange = "document.getElementById('TheForm').submit();" })
+
+        </p>
+
+
+    }*@
+
+<table class="table">
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            Descrição
+        </th>
+        <th>
+            Preço
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stock)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Peso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SKU)
+        </th>
+        <th>
+            Categoria
+        </th>
+        <th>
+            Sub Categoria
+        </th>
+        <th>
+            Marca
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+
+        <tr onclick="location.href='@Url.Action("Details", new { id = item.Id_produto })'">
+
+            <td class="td_images">
+
+                @* Vai buscar a primeira imagem para cada produto *@
+                @{IEnumerable<FreerideMTB_Store.Models.tbl_Imagens> temp = ViewBag.ListaImagens;
+
+                    IEnumerable<FreerideMTB_Store.Models.tbl_Imagens> Linha = temp.Where(c => c.tbl_Produtos.Any(x => x.Id_produto == item.Id_produto)).Take(1);
+                    string a = (String)Linha.Select(x => x.Caminho).FirstOrDefault();
+
+                    <img src="@a">
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.Raw(item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Preco)
+            </td>
+            <td>
+                @{ if (item.Stock == true)
+                    {
+                        <label class="label label-success">Em Stock</label>
+                    }
+                    else
+                    {
+                        <label class="label label-danger">Sem Stock</label>
+                    }
+                }
+            </td>
+            <td>
+
+                @if (item.Peso != null)
+                {
+                    <p>@Html.DisplayFor(modelItem => item.Peso)Gr</p>
+                }
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SKU)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tbl_Categoria.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tbl_Sub_Categoria.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tbl_Marca.Nome)
+            </td>
+            <td>
+               
+                @if (User.IsInRole("Admin"))
+                        {
+                            <text>@Html.ActionLink("Edit", "Edit", new { id = item.Id_produto }) | </text>
+                            <text>@Html.ActionLink("Delete", "Delete", new { id = item.Id_produto }) </text>
+            }
+
+
+
+
+
+            </td>
+
+        </tr>
+    }
+
+</table>

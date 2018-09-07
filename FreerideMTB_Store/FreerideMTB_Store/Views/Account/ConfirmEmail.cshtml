@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "Freeride Confirmar e-mail";
+}
+
+@{
+    ViewBag.Message = "Confirmar e-mail";
+}
+<h2>@ViewBag.Message.</h2>
+<div>
+    <p>
+        Obrigado por confirmar o seu e-mail. @Html.ActionLink("Clique aqui para entrar", "Logon", "Conta", routeValues: null, htmlAttributes: new { id = "loginLink" })
+    </p>
+</div>

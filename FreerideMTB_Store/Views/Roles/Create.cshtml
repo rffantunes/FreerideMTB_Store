@@ -1,9 +1,9 @@
 ﻿@{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Criar Cargo";
 }
 
 <h2>Create Role</h2>
-@Html.ActionLink("List Roles", "Index") | @Html.ActionLink("Manage User Role", "ManageUserRoles")
+@Html.ActionLink("Ver cargos", "Index") | @Html.ActionLink("Gerir cargos", "ManageUserRoles")
 <hr />
 @using (Html.BeginForm())
 {
@@ -11,10 +11,10 @@
     @Html.ValidationSummary(true)
 
     <div>
-        Role name
+        Nome do Cargo
     </div>
     <p>
         @Html.TextBox("RoleName")
     </p>
-    <input type="submit" value="Save" />
+    <input type="submit" value="Guardar" />
 }

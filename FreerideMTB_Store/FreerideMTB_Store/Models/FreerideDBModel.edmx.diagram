@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="089ebdad7644479bbb530439889765e4" Name="Diagram1" ZoomLevel="93">
+        <EntityTypeShape EntityType="FreerideModel.C__MigrationHistory" Width="1.5" PointX="8.75" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FreerideModel.AspNetRoles" Width="1.5" PointX="6.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FreerideModel.AspNetUserClaims" Width="1.5" PointX="4.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FreerideModel.AspNetUserLogins" Width="1.5" PointX="6.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FreerideModel.AspNetUsers" Width="1.5" PointX="9" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FreerideModel.tbl_Categoria" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FreerideModel.tbl_Encomenda" Width="1.5" PointX="6.75" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FreerideModel.tbl_ProdutoEncomenda" Width="1.5" PointX="4.75" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FreerideModel.tbl_Sub_Categoria" Width="1.5" PointX="0.5" PointY="3" IsExpanded="true" />
+        <AssociationConnector Association="FreerideModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="FreerideModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="FreerideModel.FK_tbl_Sub_Categoria_ToCategoria" ManuallyRouted="false" />
+        <AssociationConnector Association="FreerideModel.FK_Intermedia_ToEncomenda" ManuallyRouted="false" />
+        <AssociationConnector Association="FreerideModel.AspNetUserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="FreerideModel.FK_tbl_Encomenda_NetUsers" />
+        <EntityTypeShape EntityType="FreerideModel.tbl_Imagens" Width="1.5" PointX="2.625" PointY="4.75" />
+        <EntityTypeShape EntityType="FreerideModel.tbl_Produtos" Width="1.5" PointX="2.625" PointY="0.5" />
+        <AssociationConnector Association="FreerideModel.FK_tbl_Produtos_ToCategoria" />
+        <AssociationConnector Association="FreerideModel.FK_Intermedia_ToProduto" />
+        <AssociationConnector Association="FreerideModel.FK_tbl_Produtos_ToSub_Categoria" />
+        <AssociationConnector Association="FreerideModel.tbl_ImagensProduto" />
+        <EntityTypeShape EntityType="FreerideModel.tbl_Marca" Width="1.5" PointX="4.75" PointY="2.875" />
+        <AssociationConnector Association="FreerideModel.FK_tbl_Produtos_tbl_Marca" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

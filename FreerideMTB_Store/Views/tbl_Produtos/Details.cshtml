@@ -52,20 +52,20 @@
 
                 <dd>
                     @{
-                SelectList ListaImagensProduto = new SelectList(Model.tbl_Imagens, "Caminho", "TituloImg");
+                        SelectList ListaImagensProduto = new SelectList(Model.tbl_Imagens, "Caminho", "TituloImg");
                     }
 
                     <div class="scrollmenu">
 
                         @foreach (var item in ListaImagensProduto)
-                {
+                        {
 
-                    <img src="@item.Value">
-                    @*<a class="image_box">
-                        
-                    </a>*@
+                            <img src="@item.Value">
+                            @*<a class="image_box">
 
-        }
+                                </a>*@
+
+                        }
                     </div>
                 </dd>
             </div>
@@ -95,15 +95,15 @@
 
             <dd>
                 @{ if (Model.Stock == true)
-                   {
-                <label class="label label-success">Em Stock</label>
-                     }
+                    {
+                        <label class="label label-success">Em Stock</label>
+                    }
                     else
-                     {
-                          <label class="label label-danger">Sem Stock</label>
-                        }
+                    {
+                        <label class="label label-danger">Sem Stock</label>
+                    }
                 }
-                
+
             </dd>
             <dt>
                 @Html.DisplayNameFor(model => model.Peso)
@@ -111,11 +111,11 @@
 
             <dd>
 
-                    @if (Model.Peso != null)
-        {
-            <p>@Html.DisplayFor(modelItem => Model.Peso)Gr</p>
+                @if (Model.Peso != null)
+                {
+                    <p>@Html.DisplayFor(modelItem => Model.Peso)Gr</p>
 
-}
+                }
             </dd>
 
             <dt>
@@ -153,16 +153,17 @@
         </dl>
     </div>
 
+    @if (User.IsInRole("Admin"))
+    {
+        <a href="@Url.Action("Edit", new { id = Model.Id_produto })" class="btn btn-default">
+            Editar
+        </a>
+    }
 
-    <a href="@Url.Action("Edit", new { id = Model.Id_produto })" class="btn btn-default">
-        Editar
-    </a>
+        <a href="@Url.Action("Index")" class="btn btn-default">
+            Voltar
+        </a>
 
+        @*@Html.ActionLink("Voltar", "Index")*@
 
-    <a href="@Url.Action("Index")" class="btn btn-default">
-        Voltar
-    </a>
-
-    @*@Html.ActionLink("Voltar", "Index")*@
-
-</body>
+    </body>

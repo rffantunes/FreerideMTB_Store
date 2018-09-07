@@ -10,7 +10,7 @@ using FreerideMTB_Store.Models;
 
 namespace FreerideMTB_Store.Controllers
 {
-
+    [Authorize(Roles = "Admin,Editor")]
     //Este n pode herdar do BaseController para nao entrar num loop recursivo
     public class tbl_CategoriaController : Controller
     {

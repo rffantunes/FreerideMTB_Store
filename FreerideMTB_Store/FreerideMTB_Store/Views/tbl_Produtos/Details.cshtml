@@ -1,0 +1,168 @@
+﻿@model FreerideMTB_Store.Models.tbl_Produtos
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Html.DisplayFor(model => model.Nome)</h2>
+
+<style>
+    .firstRow {
+        position: relative;
+    }
+    .firstRow > dt {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    /*.image_box {
+       position:relative;
+       width: 250px;
+       height: 250px;
+    }
+    .image_box > img {
+        object-fit: contain;
+        height: 100%;
+        width: 100%;
+    }*/
+    .scrollmenu {
+        display: flex;
+        overflow-x: auto;
+        height: 30vh;
+    }
+
+    .scrollmenu > img {
+        height: 100%;
+        width: auto;
+        object-fit: contain;
+        margin: 0 20px;
+    }
+</style>
+
+<body>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <div class="firstRow">
+                <dt>
+
+                    @*@Html.DisplayNameFor(model => model.tbl_Imagens)*@
+                    Imagens
+                </dt>
+
+                <dd>
+                    @{
+                SelectList ListaImagensProduto = new SelectList(Model.tbl_Imagens, "Caminho", "TituloImg");
+                    }
+
+                    <div class="scrollmenu">
+
+                        @foreach (var item in ListaImagensProduto)
+                {
+
+                    <img src="@item.Value">
+                    @*<a class="image_box">
+                        
+                    </a>*@
+
+        }
+                    </div>
+                </dd>
+            </div>
+
+
+            <dt>
+                <br />
+                @Html.DisplayNameFor(model => model.Descricao)
+            </dt>
+
+            <dd>
+                <br />
+                @Html.Raw(Model.Descricao)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Preco)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Preco)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Stock)
+            </dt>
+
+            <dd>
+                @{ if (Model.Stock == true)
+                   {
+                <label class="label label-success">Em Stock</label>
+                     }
+                    else
+                     {
+                          <label class="label label-danger">Sem Stock</label>
+                        }
+                }
+                
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Peso)
+            </dt>
+
+            <dd>
+
+                    @if (Model.Peso != null)
+        {
+            <p>@Html.DisplayFor(modelItem => Model.Peso)Gr</p>
+
+}
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.SKU)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SKU)
+            </dd>
+
+            <dt>
+                Categoria
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.tbl_Categoria.Nome)
+            </dd>
+
+            <dt>
+                Sub-Categoria
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.tbl_Sub_Categoria.Nome)
+            </dd>
+
+            <dt>
+                Marca
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.tbl_Marca.Nome)
+            </dd>
+
+        </dl>
+    </div>
+
+
+    <a href="@Url.Action("Edit", new { id = Model.Id_produto })" class="btn btn-default">
+        Editar
+    </a>
+
+
+    <a href="@Url.Action("Index")" class="btn btn-default">
+        Voltar
+    </a>
+
+    @*@Html.ActionLink("Voltar", "Index")*@
+
+</body>

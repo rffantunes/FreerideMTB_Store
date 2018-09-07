@@ -1,0 +1,50 @@
+﻿@model FreerideMTB_Store.Models.tbl_ProdutoEncomenda
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tbl_ProdutoEncomenda</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantidade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantidade)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Preco)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Preco)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_Encomenda.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_Encomenda.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_Produtos.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_Produtos.Nome)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
