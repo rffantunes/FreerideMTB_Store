@@ -164,7 +164,7 @@ namespace FreerideMTB_Store.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-       // [ValidateInput(false)]
+       [ValidateInput(false)]
         public ActionResult Edit([Bind(Include = "Id_produto,Nome,Descricao,Preco,Categoria,Sub_Categoria,Stock,Peso,SKU,Marca")] tbl_Produtos tbl_Produtos, FormCollection collection, HttpPostedFileBase[] file)
         {
             if (ModelState.IsValid)

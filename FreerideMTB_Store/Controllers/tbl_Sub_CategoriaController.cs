@@ -10,6 +10,7 @@ using FreerideMTB_Store.Models;
 
 namespace FreerideMTB_Store.Controllers
 {
+    [Authorize(Roles = "Admin,Editor")]
     public class tbl_Sub_CategoriaController : BaseController
     {
         private FreerideEntities db = new FreerideEntities();

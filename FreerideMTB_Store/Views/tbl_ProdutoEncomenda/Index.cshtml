@@ -1,16 +1,56 @@
 ﻿@model IEnumerable<FreerideMTB_Store.Models.tbl_ProdutoEncomenda>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "FreeRide Produtos Encomendas";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<style>
+    .td_images {
+        position: relative;
+        padding: 1rem;
+        transition: transform .2s;
+    }
+
+        .td_images > img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+    /*.td_images:hover {
+            position: absolute;
+            left: 20%;
+            -webkit-transform: scale(1.2);
+            transform: scale(2.5);
+            max-width: 300px;
+        }*/
+    .table tr:hover:first-child {
+        background: initial;
+        cursor: default;
+    }
+
+    .table tr:hover {
+        background: #f1f1f1;
+        cursor: pointer;
+    }
+</style>
+<h2>Produto Encomenda</h2>
+
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        <label class="btn btn-default">
+            @Html.ActionLink("Criar novo", "Create")
+        </label>
+
+
+    </p>
+}
+
 <table class="table">
     <tr>
+        <th></th>
         <th>
             @Html.DisplayNameFor(model => model.Quantidade)
         </th>
@@ -24,28 +64,33 @@
             @Html.DisplayNameFor(model => model.tbl_Produtos.Nome)
         </th>
         <th></th>
-    </tr>
+    </trstyle="padding-top:80px;">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Quantidade)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Preco)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tbl_Encomenda.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tbl_Produtos.Nome)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
+    @foreach (var item in Model)
+    {
+        <tr onclick="location.href='@Url.Action("Details", new { id = item.Id_produto })'">
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Preco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tbl_Encomenda.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tbl_Produtos.Nome)
+            </td>
+            <td>
+
+                @if (User.IsInRole("Admin"))
+    {
+            <text>@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) | </text>
+            <text>@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) | </text>
+            <text>@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ }) </text>
 }
+            </td>
+        </tr>
+    }
 
 </table>

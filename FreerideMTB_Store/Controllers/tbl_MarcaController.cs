@@ -11,6 +11,7 @@ using FreerideMTB_Store.Models;
 
 namespace FreerideMTB_Store.Controllers
 {
+    [Authorize(Roles = "Admin,Editor")]
     public class tbl_MarcaController : BaseController
     {
         private FreerideEntities db = new FreerideEntities();

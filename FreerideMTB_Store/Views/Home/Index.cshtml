@@ -313,7 +313,8 @@
                 </td>
                 <td>
                     <h3>@Item.Nome</h3>
-                    <p>@Item.Descricao</p>
+                    @Html.Raw(Item.Descricao)
+                    @*@Item.Descricao*@
                 </td>
             </tr>
 }
@@ -349,12 +350,12 @@
 </table>
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4" style="margin-left:50px;">
         <h2>Participações</h2>
         
         <iframe width="524" height="294" src="https://www.youtube.com/embed/a1ya7ie6p4Y" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
-    <div class="col-md-4" style="margin-left:200px">
+    <div class="col-md-4" style="margin-left:250px">
         <h2>Provas</h2>
         <a class="lightbox" href="#zoom">
             <img src="https://www.apedalar.pt/Functions/thumbnail_cartaz/1942/460.jpg" />
