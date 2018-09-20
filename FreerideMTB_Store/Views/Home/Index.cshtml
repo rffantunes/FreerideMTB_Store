@@ -240,7 +240,8 @@
                 <tr onclick="window.location.href = '/tbl_Produtos/' + '?CatId=1';" style="cursor:pointer">
                     <th><h2>Equipamentos</h2></th>
                 </tr>
-                @foreach (var Produto in Model.ListaProdutos.Where(c => c.Categoria == 1).Take(2))
+
+                @foreach (var Produto in Model.ListaProdutos.Where(c => c.Categoria == 1).Reverse().Take(2))
     {
             <tr onclick="window.location.href = '/tbl_Produtos/Details/' + '@Produto.Id_produto';" style="cursor:pointer">
                 <td>
@@ -266,8 +267,8 @@
                 <tr onclick="window.location.href = '/tbl_Produtos/' + '?CatId=2';" style="cursor:pointer">
                     <th><h2>Bicicletas</h2></th>
                 </tr>
-                @foreach (var Item in Model.ListaProdutos.Where(c => c.Categoria == 2).Take(2))
-    {
+                @foreach (var Item in Model.ListaProdutos.Where(c => c.Categoria == 2).Reverse().Take(2))
+                {
             <tr onclick="window.location.href = '/tbl_Produtos/Details/' + '@Item.Id_produto';" style="cursor:pointer">
                 <td>
                     @{IEnumerable<FreerideMTB_Store.Models.tbl_Imagens> Linha = Model.ListaImagens.Where(c => c.tbl_Produtos.Any(x => x.Id_produto == Item.Id_produto)).Take(1);
@@ -301,8 +302,8 @@
                 <tr onclick="window.location.href = '/tbl_Produtos/' + '?CatId=3';" style="cursor:pointer">
                     <th><h2>Eletrónica</h2></th>
                 </tr>
-                @foreach (var Item in Model.ListaProdutos.Where(c => c.Categoria == 3).Take(2))
-        {
+                @foreach (var Item in Model.ListaProdutos.Where(c => c.Categoria == 3).Reverse().Take(2))
+                {
             <tr onclick="window.location.href = '/tbl_Produtos/Details/' + '@Item.Id_produto';" style="cursor:pointer">
                 <td>
                     @{IEnumerable<FreerideMTB_Store.Models.tbl_Imagens> Linha = Model.ListaImagens.Where(c => c.tbl_Produtos.Any(x => x.Id_produto == Item.Id_produto)).Take(1);
@@ -328,8 +329,8 @@
                 <tr onclick="window.location.href = '/tbl_Produtos/' + '?CatId=5';" style="cursor:pointer">
                     <th><h2>Suspensões</h2></th>
                 </tr>
-                @foreach (var Item in Model.ListaProdutos.Where(c => c.Categoria == 5).Take(2))
-    {
+                @foreach (var Item in Model.ListaProdutos.Where(c => c.Categoria == 5).Reverse().Take(2))
+                {
             <tr onclick="window.location.href = '/tbl_Produtos/Details/' + '@Item.Id_produto';" style="cursor:pointer">
                 <td>
                     @{IEnumerable<FreerideMTB_Store.Models.tbl_Imagens> Linha = Model.ListaImagens.Where(c => c.tbl_Produtos.Any(x => x.Id_produto == Item.Id_produto)).Take(1);
