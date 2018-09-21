@@ -4,7 +4,6 @@
     ViewBag.Title = "Details";
 }
 
-<h2>@Html.DisplayFor(model => model.Nome)</h2>
 
 <style>
     .firstRow {
@@ -28,7 +27,7 @@
     .scrollmenu {
         display: flex;
         overflow-x: auto;
-        height: 30vh;
+        height: 50vh;
     }
 
     .scrollmenu > img {
@@ -37,121 +36,152 @@
         object-fit: contain;
         margin: 0 20px;
     }
+    .clearfix:before,
+    .clearfix:after {
+        content: " ";
+        display: table;
+    }
+
+    .clearfix:after {
+        clear: both;
+    }
+
+    hr {
+        margin-bottom: 0;
+    }
+
+    .content {
+        
+    }
+    .left_container {
+        float:left;
+        width: 65%;
+    }
+    .descricao {
+        margin: 2rem 0;
+        font-size: 1.8rem;
+    }
+    .right_container {
+       float:right;
+       width: 30%;
+       text-align: center;
+       background: #eee;
+       min-height: 50vh;
+       padding: 2rem;
+    }
+
+    .preco {
+        font-size: 4rem;
+        color: #c51c00;
+        font-weight: bold;
+        margin-bottom: 1rem;
+    }
+
+    .stock {
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 3rem;
+    }
+
+    .product_details{
+        margin-top: 1rem;
+    }
+    .product_details > label {
+        float: left;
+    }
+    .product_details > span {
+        float:right;
+    }
+    
+    .title {
+        /*padding-top: 2rem;*/
+    }
+
 </style>
 
 <body>
-    <div>
-        <hr />
-        <dl class="dl-horizontal">
+    <h2 class="title">@Html.DisplayFor(model => model.Nome)</h2>
+    <hr />
+
+    <div class="content clearfix">
+        <div class="left_container">
             <div class="firstRow">
-                <dt>
+                @{
+                SelectList ListaImagensProduto = new SelectList(Model.tbl_Imagens, "Caminho", "TituloImg");
+                }
 
-                    @*@Html.DisplayNameFor(model => model.tbl_Imagens)*@
-                    Imagens
-                </dt>
+                <div class="scrollmenu">
 
-                <dd>
-                    @{
-                        SelectList ListaImagensProduto = new SelectList(Model.tbl_Imagens, "Caminho", "TituloImg");
-                    }
+                    @foreach (var item in ListaImagensProduto)
+                {
 
-                    <div class="scrollmenu">
+                    <img src="@item.Value">
+                    @*<a class="image_box">
 
-                        @foreach (var item in ListaImagensProduto)
-                        {
+                    </a>*@
 
-                            <img src="@item.Value">
-                            @*<a class="image_box">
-
-                                </a>*@
-
-                        }
-                    </div>
-                </dd>
+            }
+                </div>
             </div>
 
 
-            <dt>
-                <br />
-                @Html.DisplayNameFor(model => model.Descricao)
-            </dt>
-
-            <dd>
-                <br />
+            <div class="descricao">
+                @*@Html.DisplayNameFor(model => model.Descricao)*@
                 @Html.Raw(Model.Descricao)
-            </dd>
+            </div>
+        </div>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Preco)
-            </dt>
-
-            <dd>
+        <div class="right_container">
+            <div class="preco">
+                @*@Html.DisplayNameFor(model => model.Preco)*@
                 @Html.DisplayFor(model => model.Preco)
-            </dd>
+            </div>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Stock)
-            </dt>
-
-            <dd>
+            <div class="stock">
+                @*@Html.DisplayNameFor(model => model.Stock)*@
                 @{ if (Model.Stock == true)
-                    {
-                        <label class="label label-success">Em Stock</label>
-                    }
-                    else
-                    {
-                        <label class="label label-danger">Sem Stock</label>
-                    }
+                {
+                    <label class="label label-success">Em Stock</label>
+            }
+            else
+            {
+                <label class="label label-danger">Sem Stock</label>
+        }
                 }
+            </div>
 
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Peso)
-            </dt>
 
-            <dd>
-
+            <div class="product_details peso clearfix">
+                <label>@Html.DisplayNameFor(model => model.Peso)</label>
                 @if (Model.Peso != null)
                 {
-                    <p>@Html.DisplayFor(modelItem => Model.Peso)Gr</p>
-
+                    <span>@Html.DisplayFor(modelItem => Model.Peso)Gr</span>
                 }
-            </dd>
+            </div>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.SKU)
-            </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.SKU)
-            </dd>
+            <div class="product_details sku clearfix">
+                <label>@Html.DisplayNameFor(model => model.SKU)</label>
+                <span>@Html.DisplayFor(model => model.SKU)</span>
+            </div>
 
-            <dt>
-                Categoria
-            </dt>
+            <div class="product_details categoria clearfix">
+                <label>Categoria</label>
+                <span>@Html.DisplayFor(model => model.tbl_Categoria.Nome)</span>
+            </div>
 
-            <dd>
-                @Html.DisplayFor(model => model.tbl_Categoria.Nome)
-            </dd>
+            <div class="product_details sub_categoria clearfix">
+                <label>Sub-Categoria</label>
+                <span>@Html.DisplayFor(model => model.tbl_Sub_Categoria.Nome)</span>
+            </div>
 
-            <dt>
-                Sub-Categoria
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.tbl_Sub_Categoria.Nome)
-            </dd>
-
-            <dt>
-                Marca
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.tbl_Marca.Nome)
-            </dd>
-
-        </dl>
+            <div class="product_details marca clearfix">
+                <label>Marca</label>
+                <span>@Html.DisplayFor(model => model.tbl_Marca.Nome)</span>
+            </div>
+        </div>
     </div>
+
 
     @if (User.IsInRole("Admin"))
     {
@@ -160,10 +190,10 @@
         </a>
     }
 
-        <a href="@Url.Action("Index")" class="btn btn-default">
-            Voltar
-        </a>
+    <a href="@Url.Action("Index")" class="btn btn-default">
+        Voltar
+    </a>
 
-        @*@Html.ActionLink("Voltar", "Index")*@
+    @*@Html.ActionLink("Voltar", "Index")*@
 
-    </body>
+</body>
