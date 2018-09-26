@@ -14,16 +14,6 @@
         top: 50%;
         transform: translateY(-50%);
     }
-    /*.image_box {
-       position:relative;
-       width: 250px;
-       height: 250px;
-    }
-    .image_box > img {
-        object-fit: contain;
-        height: 100%;
-        width: 100%;
-    }*/
     .scrollmenu {
         display: flex;
         overflow-x: auto;
@@ -113,17 +103,11 @@
                 <div class="scrollmenu">
 
                     @foreach (var item in ListaImagensProduto)
-                {
-
-                    <img src="@item.Value">
-                    @*<a class="image_box">
-
-                    </a>*@
-
-            }
+                        {
+                            <img src="@item.Value">
+                         }
                 </div>
             </div>
-
 
             <div class="descricao">
                 @*@Html.DisplayNameFor(model => model.Descricao)*@
@@ -133,32 +117,28 @@
 
         <div class="right_container">
             <div class="preco">
-                @*@Html.DisplayNameFor(model => model.Preco)*@
                 @Html.DisplayFor(model => model.Preco)
             </div>
 
             <div class="stock">
-                @*@Html.DisplayNameFor(model => model.Stock)*@
                 @{ if (Model.Stock == true)
-                {
-                    <label class="label label-success">Em Stock</label>
-            }
-            else
-            {
-                <label class="label label-danger">Sem Stock</label>
-        }
+                    {
+                       <label class="label label-success">Em Stock</label>
+                    }
+                else
+                    {
+                       <label class="label label-danger">Sem Stock</label>
+                     }
                 }
             </div>
-
 
             <div class="product_details peso clearfix">
                 <label>@Html.DisplayNameFor(model => model.Peso)</label>
-                @if (Model.Peso != null)
-                {
-                    <span>@Html.DisplayFor(modelItem => Model.Peso)Kg</span>
-                }
+                    @if (Model.Peso != null)
+                        {
+                            <span>@Html.DisplayFor(modelItem => Model.Peso)Kg</span>
+                        }
             </div>
-
 
             <div class="product_details sku clearfix">
                 <label>@Html.DisplayNameFor(model => model.SKU)</label>
@@ -193,7 +173,4 @@
     <a href="@Url.Action("Index")" class="btn btn-default">
         Voltar
     </a>
-
-    @*@Html.ActionLink("Voltar", "Index")*@
-
 </body>

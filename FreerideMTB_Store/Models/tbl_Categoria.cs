@@ -11,7 +11,8 @@ namespace FreerideMTB_Store.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class tbl_Categoria
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,6 +23,8 @@ namespace FreerideMTB_Store.Models
         }
     
         public int Id_cat { get; set; }
+        [RegularExpression(@"[\w\s'""()-.,:ªº]*")]
+        [Required]
         public string Nome { get; set; }
         public string Descricao { get; set; }
     

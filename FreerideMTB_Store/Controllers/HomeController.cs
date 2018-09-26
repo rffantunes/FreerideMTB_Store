@@ -20,9 +20,6 @@ namespace FreerideMTB_Store.Controllers
             //Popular as listagens e entregar na view
             VM.ListaImagens = imgC.getImagens();
             VM.ListaProdutos = ProdC.getProdutos();
-            //VM.ListaCategorias = CatC.getCategorias();
-           // ViewBag.ListaCategoria = CatC.getCategorias();
-
             return View(VM);
         }
 
@@ -46,13 +43,5 @@ namespace FreerideMTB_Store.Controllers
 
             return View();
         }
-
-        //Criar ViewBag com foreach para cada categoria criar um <li>
-        //public ActionResult Produtos()
-        //{
-        //    ViewBag.Message = "Your contact page.";
-
-        //    return View();
-        //}
     }
 }

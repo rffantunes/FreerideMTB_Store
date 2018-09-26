@@ -9,13 +9,14 @@ using System.Web.Mvc;
 using FreerideMTB_Store.Models;
 
 namespace FreerideMTB_Store.Controllers
-{
+{   //Autorização de acesso à página
     [Authorize(Roles = "Admin,Editor")]
+    //Herança do BaseController para conseguir aceder ás listagens públicas
     public class tbl_Sub_CategoriaController : BaseController
     {
         private FreerideEntities db = new FreerideEntities();
 
-
+        //Criar lista para aceder ás subcategorias
         public List<tbl_Sub_Categoria> getSubCat()
         {
 

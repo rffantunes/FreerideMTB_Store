@@ -12,7 +12,7 @@ using FreerideMTB_Store.Models;
 using PagedList;
 
 namespace FreerideMTB_Store.Controllers
-{
+{   //Herança do BaseController para conseguir aceder ás listagens públicas
     public class tbl_ProdutosController : BaseController
     {
         private FreerideEntities db = new FreerideEntities();
@@ -78,7 +78,7 @@ namespace FreerideMTB_Store.Controllers
             }
             return View(tbl_Produtos);
         }
-
+        //Autorização de acesso
         [Authorize(Roles = "Admin")]
         // GET: tbl_Produtos/Create
         public ActionResult Create()
@@ -99,11 +99,6 @@ namespace FreerideMTB_Store.Controllers
         {
             if (ModelState.IsValid)
             {
-                //List<tbl_Imagens> listIMG=new List<tbl_Imagens>();
-
-                //tbl_Produtos.tbl_Imagens = new List<tbl_Imagens>();
-
-            
                 //Correr todos os ficheiros disponiveis no formulario
                 foreach (HttpPostedFileBase i in file)
                 {
@@ -123,18 +118,17 @@ namespace FreerideMTB_Store.Controllers
                         i.SaveAs(filePath);
                         //criar uma nova ligacao de muitos para muitos(tbl.Imagens.ADD)
                         tbl_Produtos.tbl_Imagens.Add(intem);
-                        //listIMG.Add(intem);
                         
                     }
                 }
-               
+               //Guardar na Base de dados
                 db.tbl_Produtos.Add(tbl_Produtos);
                 db.SaveChanges();
               
-
+                //Redirecionar para o Index
                 return RedirectToAction("Index");
             }
-
+            //Apresentar Lista de Categorias, SubCategorias e Marcas para selecionar
             ViewBag.Categoria = new SelectList(db.tbl_Categoria, "Id_cat", "Nome", tbl_Produtos.Categoria);
             ViewBag.Sub_Categoria = new SelectList(db.tbl_Sub_Categoria, "Id_sub_cat", "Nome", tbl_Produtos.Sub_Categoria);
             ViewBag.Marca = new SelectList(db.tbl_Marca, "Id", "Nome", tbl_Produtos.Marca);
@@ -235,36 +229,6 @@ namespace FreerideMTB_Store.Controllers
 
                     return RedirectToAction("Index");
                 }
-
-
-
-
-
-
-
-                //foreach (tbl_Imagens img in listToDel)
-                //{
-                //    db.Entry(db.tbl_Imagens.Find(img.Id)).State = EntityState.Deleted;
-
-                //    //**************** Opcao para eliminar o ficheiro (cuidado com outros produtos que utilizem a mesma img)********
-
-
-                //    //var path = Server.MapPath(img.Caminho);
-                //    //if (System.IO.File.Exists(path)) 
-                //    //{
-                //    //    System.IO.File.Delete(path);
-                //    //}
-                //}
-
-
-
-
-
-                //db.Entry(tbl_Produtos).State = EntityState.Unchanged;
-                //db.tbl_Imagens.RemoveRange(listToDel);
-
-
-
                
             }
             ViewBag.Categoria = new SelectList(db.tbl_Categoria, "Id_cat", "Nome", tbl_Produtos.Categoria);
@@ -295,7 +259,7 @@ namespace FreerideMTB_Store.Controllers
         {
             tbl_Produtos tbl_Produtos = db.tbl_Produtos.Find(id);
             var listaImagens = tbl_Produtos.tbl_Imagens;
-            //Duvida em relacao ao funcionamento de muitos para muitos (apagar ou nao img da DB)(2 produtos podem usar a mesma img)
+          //Duvida em relacao ao funcionamento de muitos para muitos (apagar ou nao img da DB)(2 produtos podem usar a mesma img)
           //  db.tbl_Imagens.RemoveRange(listaImagens);
             db.tbl_Produtos.Remove(tbl_Produtos);
             db.SaveChanges();

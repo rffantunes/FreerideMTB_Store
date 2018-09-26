@@ -10,7 +10,9 @@ using FreerideMTB_Store.Models;
 
 namespace FreerideMTB_Store.Controllers
 {
+    //Regra de autorização de página
     [Authorize(Roles = "Admin,Editor")]
+    //herança do BaseController para conseguir aceder a listagens públicas
     public class tbl_EncomendaController : BaseController
     {
         private FreerideEntities db = new FreerideEntities();

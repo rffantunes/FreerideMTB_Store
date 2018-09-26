@@ -15,6 +15,7 @@
         cursor: pointer;
     }
 </style>
+
 <h2>SubCategorias</h2>
 @if (User.IsInRole("Admin"))
 {
@@ -49,9 +50,9 @@
             <td>
                 @Html.ActionLink("Editar", "Edit", new { id = item.Id_sub_cat }) |
                 @Html.ActionLink("Detalhes", "Details", new { id = item.Id_sub_cat }) |
-                @if (User.IsInRole("Admin"))
-                {@Html.ActionLink("Eliminar", "Delete", new { id = item.Id_sub_cat })
-                }
+                    @if (User.IsInRole("Admin"))
+                     {@Html.ActionLink("Eliminar", "Delete", new { id = item.Id_sub_cat })
+                       }
             </td>
         </tr>
 }

@@ -79,6 +79,7 @@
     </style>
 </head>
 <body>
+    @* Apresentar em todas as páginas a barra inicial com os produtos.... *@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -110,9 +111,9 @@
                             <div class="dropdown-content">
                                 @Html.ActionLink("Todos", "Index", "tbl_Produtos")
                                 @{foreach (FreerideMTB_Store.Models.tbl_Categoria cat in ViewBag.ListaCategoria)
-                    {
-                        <a href="/tbl_Produtos/?CatId=@cat.Id_cat">@cat.Nome</a>
-    }
+                                     {
+                                         <a href="/tbl_Produtos/?CatId=@cat.Id_cat">@cat.Nome</a>
+                                     }
                                 }
 
                             </div>
@@ -120,51 +121,24 @@
                     </li>
                     <li>
                         @if (User.IsInRole("Admin"))
-        {
+                         {
 
-                @Html.ActionLink("Admin", "Index", "Roles")
-}
+                            @Html.ActionLink("Admin", "Index", "Roles")
+                         }
                     </li>
                     <li>
                         <div class="search">
                             @using (Html.BeginForm("Index", "tbl_Produtos", FormMethod.Get))
-            {
-                <input type="text" id="name" name="search" placeholder="Pesquisar">
-                <input type="submit" value="⌕" />
-}
+                             {
+                                <input type="text" id="name" name="search" placeholder="Pesquisar">
+                                <input type="submit" value="⌕" />
+                              }
                         </div>
                     </li>
-
-
                 </ul>
-
-
-
-                @*<form asp-controller="tbl_Produtos" asp-action="Index" method="get">
-                    <p>
-                        <input type="text" name="search">
-                        <input type="submit" value="Pesquisar" />
-                    </p>
-                </form>*@
-
-
-
-
-               
-
-
-
 
                 @Html.Partial("_LoginPartial")
             </div>
-            @*<div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                     Replicar linha (Nome a aparecer, Nome View, Nome Pasta View) 
-                    <li>@Html.ActionLink("Produtos", "Index", "tbl_Produtos")</li>
-
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>*@
         </div>
     </div>
     <div class="container body-content">

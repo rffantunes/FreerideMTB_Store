@@ -5,16 +5,7 @@
 }
 
 <style>
-    /*.jumbotron {
-        margin-bottom: 5px;
-        background-image: url(../Imagens/TrekLogo.png);
-        background-position: 0% 0%;
-        background-size: cover;
-        object-fit:contain;
-        background-repeat: no-repeat;
-        color: white;
-        text-shadow: black 0.3em 0.3em 0.3em;
-    }*/
+    /*styling da barra de topo com as categorias*/ 
     .categorias {
         position: relative;
     }
@@ -73,21 +64,6 @@
     .space{
         margin-top:10px;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     a.lightbox img {
         height: 295px;
@@ -202,7 +178,7 @@
             top: 0px;
         }
 
-
+    /*Para corrigir os espaços que pode existir em branco*/
     .clearfix:before,
     .clearfix:after {
         content: " ";
@@ -215,13 +191,7 @@
 
 
 </style>
-
-
-
-
-
-
-
+@* Banner com as imagens da página inicial *@
 <div id="my-carousel" class="carousel slide space" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#my-carousel" data-slide-to="0" class="active"></li>
@@ -262,23 +232,6 @@
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-@*<div class="jumbotron">
-    <br />
-    <br />
-    <br />
-    <br />
-</div>*@
-
 <div>
     <h3>Freeride MTB Store</h3>
     <p class="lead">A loja onde encontrará tudo o que precisa para o seu desporto favorito.</p>
@@ -292,7 +245,7 @@
         <div class="categorie_title" onclick="window.location.href = '/tbl_Produtos/' + '?CatId=1';">
             <h2>Equipamentos</h2>
         </div>
-
+        @* Listagem que vai buscar os últimos 3 artigos adicionados nesta categoria *@
         @foreach (var Produto in Model.ListaProdutos.Where(c => c.Categoria == 1).Reverse().Take(3))
         {
             <div class="produto" onclick="window.location.href = '/tbl_Produtos/Details/' + '@Produto.Id_produto';">
@@ -316,21 +269,21 @@
         <div class="categorie_title" onclick="window.location.href = '/tbl_Produtos/' + '?CatId=2';">
             <h2>Bicicletas</h2>
         </div>
-
+        @* Listagem que vai buscar os últimos 3 artigos adicionados nesta categoria *@
         @foreach (var Item in Model.ListaProdutos.Where(c => c.Categoria == 2).Reverse().Take(3))
-        {
-            <div class="produto" onclick="window.location.href = '/tbl_Produtos/Details/' + '@Item.Id_produto';">
-                <h4 class="produt_name">@Item.Nome</h4>
+    {
+        <div class="produto" onclick="window.location.href = '/tbl_Produtos/Details/' + '@Item.Id_produto';">
+            <h4 class="produt_name">@Item.Nome</h4>
 
-                @{IEnumerable<FreerideMTB_Store.Models.tbl_Imagens> Linha = Model.ListaImagens.Where(c => c.tbl_Produtos.Any(x => x.Id_produto == Item.Id_produto)).Take(1);
-                    string a = (String)Linha.Select(x => x.Caminho).FirstOrDefault();
-                    <img src="@a" width="250px" height="140px" style="margin:20px 15px">
-                }
+            @{IEnumerable<FreerideMTB_Store.Models.tbl_Imagens> Linha = Model.ListaImagens.Where(c => c.tbl_Produtos.Any(x => x.Id_produto == Item.Id_produto)).Take(1);
+            string a = (String)Linha.Select(x => x.Caminho).FirstOrDefault();
+            <img src="@a" width="250px" height="140px" style="margin:20px 15px">
+            }
 
-                
-                    @*<p class="produt_description">@Html.Raw(Item.Descricao)</p>*@
-            </div>
-        }
+
+            @*<p class="produt_description">@Html.Raw(Item.Descricao)</p>*@
+        </div>
+}
     </div>
     
 
@@ -340,21 +293,21 @@
         <div class="categorie_title" onclick="window.location.href = '/tbl_Produtos/' + '?CatId=3';">
             <h2>Eletrónica</h2>
         </div>
-
+        @* Listagem que vai buscar os últimos 3 artigos adicionados nesta categoria *@
         @foreach (var Produto in Model.ListaProdutos.Where(c => c.Categoria == 3).Reverse().Take(3))
-        {
-            <div class="produto" onclick="window.location.href = '/tbl_Produtos/Details/' + '@Produto.Id_produto';">
-                <h4 class="produt_name">@Produto.Nome</h4>
+    {
+        <div class="produto" onclick="window.location.href = '/tbl_Produtos/Details/' + '@Produto.Id_produto';">
+            <h4 class="produt_name">@Produto.Nome</h4>
 
-                @{IEnumerable<FreerideMTB_Store.Models.tbl_Imagens> Linha = Model.ListaImagens.Where(c => c.tbl_Produtos.Any(x => x.Id_produto == Produto.Id_produto)).Take(1);
-                    string a = (String)Linha.Select(x => x.Caminho).FirstOrDefault();
-                    <img src="@a" width="250px" height="140px" style="margin:20px 15px">
-                }
+            @{IEnumerable<FreerideMTB_Store.Models.tbl_Imagens> Linha = Model.ListaImagens.Where(c => c.tbl_Produtos.Any(x => x.Id_produto == Produto.Id_produto)).Take(1);
+            string a = (String)Linha.Select(x => x.Caminho).FirstOrDefault();
+            <img src="@a" width="250px" height="140px" style="margin:20px 15px">
+            }
 
-                
-                    @*<p class="produt_description">@Html.Raw(Produto.Descricao)</p>*@
-            </div>
-        }
+
+            @*<p class="produt_description">@Html.Raw(Produto.Descricao)</p>*@
+        </div>
+}
     </div>
     
 
@@ -364,26 +317,23 @@
         <div class="categorie_title" onclick="window.location.href = '/tbl_Produtos/' + '?CatId=5';">
             <h2>Suspensões</h2>
         </div>
-
+        @* Listagem que vai buscar os últimos 3 artigos adicionados nesta categoria *@
         @foreach (var Item in Model.ListaProdutos.Where(c => c.Categoria == 5).Reverse().Take(3))
-        {
-            <div class="produto" onclick="window.location.href = '/tbl_Produtos/Details/' + '@Item.Id_produto';">
-                <h4 class="produt_name">@Item.Nome</h4>
+    {
+        <div class="produto" onclick="window.location.href = '/tbl_Produtos/Details/' + '@Item.Id_produto';">
+            <h4 class="produt_name">@Item.Nome</h4>
 
-                @{IEnumerable<FreerideMTB_Store.Models.tbl_Imagens> Linha = Model.ListaImagens.Where(c => c.tbl_Produtos.Any(x => x.Id_produto == Item.Id_produto)).Take(1);
-                    string a = (String)Linha.Select(x => x.Caminho).FirstOrDefault();
-                    <img src="@a" width="250px" height="140px" style="margin:20px 15px">
-                }
+            @{IEnumerable<FreerideMTB_Store.Models.tbl_Imagens> Linha = Model.ListaImagens.Where(c => c.tbl_Produtos.Any(x => x.Id_produto == Item.Id_produto)).Take(1);
+            string a = (String)Linha.Select(x => x.Caminho).FirstOrDefault();
+            <img src="@a" width="250px" height="140px" style="margin:20px 15px">
+            }
 
-                
-                    @*<p class="produt_description">@Html.Raw(Item.Descricao)</p>*@
-            </div>
-        }
+
+            @*<p class="produt_description">@Html.Raw(Item.Descricao)</p>*@
+        </div>
+}
     </div>
     
-
-
-
 </div> @* fim das categorias *@
 
 <div class="row">
@@ -402,10 +352,4 @@
             <a class="lightbox-close" href=""></a>
         </div>
     </div>
-    @*<div class="col-md-4">
-        <h2>Provas</h2>
-        <img src="https://www.apedalar.pt/Functions/thumbnail_cartaz/1942/460.jpg" alt="Descida do Picoto 2018" height="295" width="210" onclick="window.open(this.src)">
-        <p><a class="btn btn-default" href="https://www.facebook.com/selindabtt/">Saiba mais &raquo;</a></p>
-    </div>*@
-
 </div>

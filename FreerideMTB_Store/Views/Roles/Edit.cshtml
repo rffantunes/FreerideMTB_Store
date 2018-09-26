@@ -12,9 +12,9 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
     @Html.HiddenFor(model => model.Id)
-    <div>
-       Nome do Cargo
-    </div>
+        <div>
+           Nome do Cargo
+        </div>
     <p>
         @Html.TextBoxFor(model => model.Name)
     </p>

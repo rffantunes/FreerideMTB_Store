@@ -9,13 +9,14 @@ using System.Web.Mvc;
 using FreerideMTB_Store.Models;
 
 namespace FreerideMTB_Store.Controllers
-{
+{   //Autorização de acesso à página
     [Authorize(Roles = "Admin,Editor")]
+    //Herança do BaseController para conseguir aceder ás listagens públicas
     public class tbl_ProdutoEncomendaController : BaseController
     {
         private FreerideEntities db = new FreerideEntities();
 
-
+        //Criar uma listagem para aceder a partir de qualquer página
         public List<tbl_ProdutoEncomenda> getProdutoEncomenda()
         {
 

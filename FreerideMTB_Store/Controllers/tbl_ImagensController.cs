@@ -9,16 +9,15 @@ using System.Web.Mvc;
 using FreerideMTB_Store.Models;
 
 namespace FreerideMTB_Store.Controllers
-{
+{    //Autorização de acesso à página
     [Authorize(Roles = "Admin,Editor")]
+    //Herança do BaseController para conseguir aceder ás listagens públicas
     public class tbl_ImagensController : BaseController
     {
         private FreerideEntities db = new FreerideEntities();
 
 
-        //Criar uma listagem para aceder às a partir de qualquer página
-
-
+        //Criar uma listagem para aceder às Imagens a partir de qualquer página
         public List<tbl_Imagens> getImagens()
         {                               ////LINQ Code
             var lsImagens = db.tbl_Imagens.Include(c => c.tbl_Produtos);

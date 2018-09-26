@@ -11,7 +11,7 @@ using FreerideMTB_Store.Models;
 namespace FreerideMTB_Store.Controllers
 {
     [Authorize(Roles = "Admin,Editor")]
-    //Este n pode herdar do BaseController para nao entrar num loop recursivo
+    //Este controller nao pode herdar do BaseController para nao entrar num loop recursivo
     public class tbl_CategoriaController : Controller
     {
         private FreerideEntities db = new FreerideEntities();
@@ -26,22 +26,8 @@ namespace FreerideMTB_Store.Controllers
             return lsCat.ToList();
         }
 
-        //Criar uma listagem para aceder as Subcategorias a partir de qualquer página
-        //public List<tbl_Categoria> getSubCategorias()
-        //{
-
-        //    ////LINQ Code
-        //    var lsSubCat = db.tbl_Sub_Categoria;
-        //    return lsSubCat.ToList();
-        //}
-
-
-
-
-
-
-            //metodo que permite criar a dropdown das categorias para as views da categoria (por implementar)
-            //OnactionExecution é executado antes de qualquer action(Index,Edit,Create,...)
+         //metodo que permite criar a dropdown das categorias para as views da categoria
+         //OnactionExecution é executado antes de qualquer action(Index,Edit,Create,...)
             override
         protected void OnActionExecuting(ActionExecutingContext filterContext)
         {
@@ -49,13 +35,7 @@ namespace FreerideMTB_Store.Controllers
             ViewBag.ListaCategoria = getCategorias();
             //ViewBag.ListaMarcas = MarcaC.getMarcas();
         }
-
-
-
-
-
-
-
+        
 
         // GET: tbl_Categoria
         public ActionResult Index()
