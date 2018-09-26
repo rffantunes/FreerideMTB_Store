@@ -1,20 +1,151 @@
-﻿@{
+﻿<style>
+    /*Para corrigir os espaços que pode existir em branco*/
+    .clearfix:before,
+    .clearfix:after {
+        content: " ";
+        display: table;
+    }
+
+    .clearfix:after {
+        clear: both;
+    }
+
+    .contact_title {
+        text-align: center;
+        padding-top: 3rem;
+    }
+
+    .contact_content {
+        margin-top: 8rem;
+        display: flex;
+        justify-content: space-around;
+        padding-bottom: 25vh;
+    }
+
+    .content {
+        position: relative;
+        float: left;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .icon_background {
+        background: #ccc;
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        left: 50%;
+        transform: translateX(-50%);
+        cursor: pointer;
+    }
+
+    .icon {
+        font-size: 4rem;
+        color: white;
+    }
+
+    .content_name {
+        text-transform: uppercase;
+        display: block;
+        text-align: center;
+        margin: 1rem 0;
+        letter-spacing: 2px;
+        color: #75a625;
+    }
+
+    .content_link {
+        text-decoration: underline;
+        text-decoration-color: #75a625;
+        color: black;
+        text-align: center;
+    }
+
+        .content_link:hover {
+            color: #75a625;
+        }
+    .space{
+        padding-top:1.1rem;
+    }
+</style>
+
+@{
     ViewBag.Title = "Freeride Contactos";
 }
 
-@{ 
+@{
     ViewBag.Message = "Contactos";
 }
+<script>
+    function copy(selector) {
+        var $temp = $("<div>");
+    $("body").append($temp);
+        $temp.attr("contenteditable", true)
+            .html($(selector).html()).select()
+            .on("focus", function () { document.execCommand('selectAll', false, null) })
+            .focus();
+        document.execCommand("copy");
+        $temp.remove();
+    }
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-<h2>@ViewBag.Message</h2>
+    <h2 class="contact_title">@ViewBag.Message</h2>
 
-<address>
-    Instituto Politécnico de Tomar<br />
-    Quinta do Contador<br />
-    <abbr title="Telefone">Telefone:</abbr>
-    236374659
-</address>
 
-<address>
-    <strong>Email:</strong>   <a href="mailto:rffantunes@hotmail.com">rffantunes@hotmail.com</a><br />
-</address>
+    <div class="contact_content clearfix">
+        <address class="content">
+            <div class="icon_background" onclick="location.href='mailto:rffantunes@hotmail.com';">
+                <i class="fa fa-envelope icon"></i>
+            </div>
+            <span class="content_name">Email</span>
+            <a href="mailto:rffantunes@hotmail.com" class="content_link">rffantunes@hotmail.com</a>
+        </address>
+
+
+        <address class="content">
+            <div class="icon_background" onclick="copy('#demo')">
+                <i class="fa fa-phone icon"></i>
+            </div>
+            <span class="content_name">Telefone</span>
+            <p id="demo" class="content_link space">964138193</p>
+        </address>
+
+        <address class="content">
+            <div class="icon_background" onclick="window.open('https://www.linkedin.com/in/renato-antunes-038879b9/','_newtab');">
+                <i class="fa fa-linkedin icon"></i>
+            </div>
+            <span class="content_name">LinkedIn</span>
+            <a href="https://www.linkedin.com/in/renato-antunes-038879b9/" class="content_link">Sigam-me</a>
+        </address>
+
+        <address class="content">
+            <div class="icon_background" onclick="window.open('https://github.com/rffantunes','_newtab');">
+                <i class="fa fa-github icon"></i>
+            </div>
+            <span class="content_name">GitHub</span>
+            <a href="https://github.com/rffantunes" class="content_link">Projectos</a>
+        </address>
+
+        <address class="content">
+            <div class="icon_background" onclick="copy('#demo1')">
+                <i class="fa fa-skype icon"></i>
+            </div>
+            <span class="content_name">Skype</span>
+            <p id="demo1" class="content_link space">rffantunes</p>
+        </address>
+   </div>
+
+
+    <address>
+        @*Instituto Politécnico de Tomar, Quinta do Contador, telefone: 236374659*@
+    </address>
+
+
+
+
+
