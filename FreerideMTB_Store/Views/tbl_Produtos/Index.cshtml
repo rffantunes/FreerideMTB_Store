@@ -48,22 +48,10 @@
         <label class="btn btn-default">
             @Html.ActionLink("Criar novo", "Create")
         </label>
-
-
     </p>
 }
 
 
-@*@using (Html.BeginForm("Index", "tbl_Produtos", FormMethod.Get, new { id = "TheForm" }))
-    {
-
-        <p>
-            Categorias @Html.DropDownList("CatId", (new SelectList(ViewBag.ListaCategorias, "id_cat", "Nome")), "", new { onchange = "document.getElementById('TheForm').submit();" })
-
-        </p>
-
-
-    }*@
 
 <table class="table">
     <tr>
@@ -105,16 +93,16 @@
                 @* Vai buscar a primeira imagem para cada produto *@
                 @{IEnumerable<FreerideMTB_Store.Models.tbl_Imagens> temp = ViewBag.ListaImagens;
 
-                 IEnumerable<FreerideMTB_Store.Models.tbl_Imagens> Linha = temp.Where(c => c.tbl_Produtos.Any(x => x.Id_produto == item.Id_produto)).Take(1);
-                 string a = (String)Linha.Select(x => x.Caminho).FirstOrDefault();
+                    IEnumerable<FreerideMTB_Store.Models.tbl_Imagens> Linha = temp.Where(c => c.tbl_Produtos.Any(x => x.Id_produto == item.Id_produto)).Take(1);
+                    string a = (String)Linha.Select(x => x.Caminho).FirstOrDefault();
 
-            <img src="@a">
+                    <img src="@a">
                 }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
-            
+
             <td class="td_price">
                 @Html.DisplayFor(modelItem => item.Preco)
             </td>
@@ -150,12 +138,12 @@
                 @Html.DisplayFor(modelItem => item.tbl_Marca.Nome)
             </td>
             <td>
-               
+
                 @if (User.IsInRole("Admin"))
-                        {
-                            <text>@Html.ActionLink("Editar", "Edit", new { id = item.Id_produto }) | </text>
-                            <text>@Html.ActionLink("Eliminar", "Delete", new { id = item.Id_produto }) </text>
-            }
+                {
+                    <text>@Html.ActionLink("Editar", "Edit", new { id = item.Id_produto }) | </text>
+                    <text>@Html.ActionLink("Eliminar", "Delete", new { id = item.Id_produto }) </text>
+                }
 
 
 
@@ -166,3 +154,6 @@
     }
 
 </table>
+
+
+

@@ -1,39 +1,59 @@
 ﻿@model IEnumerable<FreerideMTB_Store.Models.tbl_Sub_Categoria>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "FreeRide SubCategorias";
 }
 
-<h2>Index</h2>
+<style>
+    .table tr:hover:first-child {
+        background: initial;
+        cursor: default;
+    }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tbl_Categoria.Nome)
-        </th>
-        <th></th>
-    </tr>
+    .table tr:hover {
+        background: #f1f1f1;
+        cursor: pointer;
+    }
+</style>
+<h2>SubCategorias</h2>
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        <label class="btn btn-default">
+            @Html.ActionLink("Criar nova", "Create")
+        </label>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tbl_Categoria.Nome)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id_sub_cat }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id_sub_cat }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id_sub_cat })
-        </td>
-    </tr>
+
+    </p>
+}
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tbl_Categoria.Nome)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+    {
+        <tr onclick="location.href='@Url.Action("Details", new { id = item.Id_sub_cat })'">
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tbl_Categoria.Nome)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id_sub_cat }) |
+                @Html.ActionLink("Detalhes", "Details", new { id = item.Id_sub_cat }) |
+                @if (User.IsInRole("Admin"))
+                {@Html.ActionLink("Eliminar", "Delete", new { id = item.Id_sub_cat })
+                }
+            </td>
+        </tr>
 }
 
-</table>
+    </table>

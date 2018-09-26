@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
     <link rel="shortcut icon" type="image/x-icon" href="~/Imagens/icon_btt.png" />
+    @Scripts.Render("~/bundles/lib")
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -19,9 +20,9 @@
             line-height: 20px;
         }
 
-        .dropbtn:hover {
-            color: white;
-        }
+            .dropbtn:hover {
+                color: white;
+            }
 
         .dropdown {
             position: relative;
@@ -51,17 +52,17 @@
                 }
 
         .dropdown:hover .dropdown-content {
-            display: flex; 
+            display: flex;
         }
 
-        .navbar-right > li > a{
+        .navbar-right > li > a {
             font-size: 1.2rem !important;
         }
 
-        .search{
-            width:300px;
-            padding-top:15px;
-            padding-left:15px;
+        .search {
+            width: 300px;
+            padding-top: 15px;
+            padding-left: 15px;
         }
 
         input[type=text] {

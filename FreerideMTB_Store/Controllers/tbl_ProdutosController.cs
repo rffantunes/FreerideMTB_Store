@@ -9,6 +9,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FreerideMTB_Store.Models;
+using PagedList;
 
 namespace FreerideMTB_Store.Controllers
 {
@@ -34,6 +35,8 @@ namespace FreerideMTB_Store.Controllers
         // GET: tbl_Produtos
         public ActionResult Index(int? CatId, string search)
         {
+            
+
             //Para criar uma lista onde mostra os produtos e as imagens
             var tbl_Produtos = db.tbl_Produtos.Include(t => t.tbl_Categoria).Include(t => t.tbl_Sub_Categoria).Include(t => t.tbl_Marca);
 
@@ -50,15 +53,13 @@ namespace FreerideMTB_Store.Controllers
                 tbl_Produtos = tbl_Produtos.Where(S => S.Nome.Contains(search));
             }
 
-
-
-
-
+            
             //Para criar uma lista onde mostra os produtos e as imagens
             //var tbl_Produtos = db.tbl_Produtos.Include(t => t.tbl_Categoria).Include(t => t.tbl_Sub_Categoria).Include(t => t.tbl_Marca);
             var tbl_Imagens = db.tbl_Imagens;
             ViewBag.ListaImagens = tbl_Imagens;
             ViewBag.ListaCategorias = db.tbl_Categoria.ToList();
+            
 
             return View(tbl_Produtos.ToList());
         }
